@@ -113,9 +113,10 @@
     }
 
     function exploreCosmics() {
+      document.body.innerHTML = ''; 
       // Create an iframe element
       const frame = document.createElement("iframe");
-      frame.setAttribute("src", "./launcher.html"); // Set the source to your HTML file
+      frame.setAttribute("src", "launcher.html"); // Set the source to your HTML file
       
       // Set iframe styles directly in JavaScript
       frame.style.height = "100vh"; // Full viewport height
