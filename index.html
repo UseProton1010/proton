@@ -12,32 +12,27 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background-color: #1b1b2f;
+      background: linear-gradient(135deg, #1b1b2f, #6a0572);
       font-family: 'Poppins', sans-serif;
       color: #e0e0e0;
+      overflow: hidden;
     }
 
     .typing-container {
-      font-size: 1.8em;
+      font-size: 2em;
       color: transparent;
       background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff);
       -webkit-background-clip: text;
       background-clip: text;
-      overflow: hidden;
       white-space: nowrap;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 2px;
-      background-color: #f72585;
+      border-right: 2px solid #f72585; /* Cursor effect */
       animation: blink 0.7s steps(1) infinite;
-      margin-left: 2px;
+      padding-right: 5px; /* Padding for cursor */
     }
 
     @keyframes blink {
-      0%, 50% { opacity: 1; }
-      50%, 100% { opacity: 0; }
+      0%, 50% { border-color: transparent; }
+      50%, 100% { border-color: #f72585; }
     }
 
     .highlight {
@@ -51,7 +46,7 @@
 </head>
 <body>
   <div class="typing-container">
-    <span id="typing-text"></span><span class="cursor">|</span>
+    <span id="typing-text"></span>
   </div>
   <script>
     const texts = [
@@ -99,8 +94,9 @@
         }
       }
 
-      // Speed adjustments for typing and deleting
-      setTimeout(type, isDeleting ? 100 : 200);
+      // Adjust typing and deleting speeds for a more realistic effect
+      const typingSpeed = isDeleting ? 75 : charIndex === fullText.length ? 200 : 150; // Faster when typing and slower when deleting
+      setTimeout(type, typingSpeed);
     }
 
     window.onload = type; // Start the animation on load
