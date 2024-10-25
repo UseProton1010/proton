@@ -22,7 +22,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            justify-content: flex-start; /* Align items to the left */
+            justify-content: flex-start;
         }
         .game-card {
             background-color: #162447;
@@ -48,6 +48,9 @@
     </style>
 </head>
 <body>
+    <h1>Last Played</h1>
+    <div class="game-container" id="lastPlayedContainer"></div>
+
     <h1>All Games</h1>
     <div class="game-container" id="gameContainer"></div>
 
@@ -59,12 +62,22 @@
         ];
 
         const gameContainer = document.getElementById('gameContainer');
-        games.forEach(({ icon, path, error, name }) => {
+        const lastPlayedContainer = document.getElementById('lastPlayedContainer');
+
+        function loadLastPlayedGames() {
+            const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
+            lastPlayed.forEach(({ icon, path, name }) => {
+                createGameCard(lastPlayedContainer, icon, path, name, false);
+            });
+        }
+
+        function createGameCard(container, icon, path, name, error) {
             const gameCard = document.createElement('div');
             gameCard.className = 'game-card';
             gameCard.onclick = () => {
                 if (!error) {
                     localStorage.setItem('@proton/path', path);
+                    saveLastPlayedGame({ icon, path, name });
                     window.location.href = './fullscreen.html';
                 } else {
                     alert('Error: This game is not available.');
@@ -81,8 +94,24 @@
             gameName.innerText = name;
 
             gameCard.append(gameIcon, gameName);
-            gameContainer.appendChild(gameCard);
+            container.appendChild(gameCard);
+        }
+
+        function saveLastPlayedGame(game) {
+            const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
+            const existingIndex = lastPlayed.findIndex(item => item.path === game.path);
+            if (existingIndex !== -1) {
+                lastPlayed.splice(existingIndex, 1);
+            }
+            lastPlayed.unshift(game);
+            localStorage.setItem('@proton/ls', JSON.stringify(lastPlayed.slice(0, 5))); // Store only the last 5 played games
+        }
+
+        games.forEach(({ icon, path, error, name }) => {
+            createGameCard(gameContainer, icon, path, name, error);
         });
+
+        loadLastPlayedGames();
     </script>
 </body>
 </html>
