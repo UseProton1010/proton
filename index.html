@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOC<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -74,23 +74,33 @@
       )}</span>`;
       const afterHighlight = fullText.slice(highlightIndex + highlightLength);
 
-      if (!isDeleting) {
-        typingText.innerHTML = beforeHighlight + highlighted + afterHighlight.slice(0, charIndex - highlightIndex);
-        charIndex++;
-        if (charIndex === fullText.length) {
-          isDeleting = true;
-          setTimeout(type, 1000); // Pause before deleting
+      // Update displayed text based on typing direction
+      if (isDeleting) {
+        typingText.innerHTML = fullText.substring(0, charIndex);
+        charIndex--;
+        if (charIndex < 0) {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % texts.length; // Switch to the next text
+          charIndex = 0;
+          setTimeout(type, 500); // Pause before starting next text
           return;
         }
       } else {
-        typingText.innerHTML = beforeHighlight + highlighted + afterHighlight.slice(0, charIndex - highlightIndex);
-        charIndex--;
-        if (charIndex === 0) {
-          isDeleting = false;
-          textIndex = (textIndex + 1) % texts.length;
+        let displayedText = fullText.substring(0, charIndex);
+        if (charIndex > highlightIndex && charIndex <= highlightIndex + highlightLength) {
+          displayedText = `${beforeHighlight}${highlighted}${afterHighlight.substring(0, charIndex - highlightIndex - highlightLength)}`;
+        }
+        typingText.innerHTML = displayedText;
+        charIndex++;
+        if (charIndex === fullText.length + 1) {
+          isDeleting = true;
+          setTimeout(type, 1000); // Pause before starting deletion
+          return;
         }
       }
-      setTimeout(type, isDeleting ? 100 : 200); // Adjust typing and deleting speed
+
+      // Speed adjustments for typing and deleting
+      setTimeout(type, isDeleting ? 100 : 200);
     }
 
     window.onload = type; // Start the animation on load
