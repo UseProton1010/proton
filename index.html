@@ -89,7 +89,6 @@
     const typingText = document.getElementById("typing-text");
 
     function type() {
-      typingText.innerHTML = ''; 
       const currentTextObj = texts[textIndex];
       const { fullText, highlightIndex, highlightLength } = currentTextObj;
       const beforeHighlight = fullText.slice(0, highlightIndex);
@@ -134,6 +133,7 @@
 
     window.onload = () => {
       // Clear the text on load
+      typingText.innerHTML = ''; 
       type();
     };
   </script>
