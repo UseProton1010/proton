@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'my-site-cache-v19';
+const CACHE_NAME = 'proton-v0.0.1';
 let urlsToCache = [
   'index.html',
   'games/index.html',
@@ -39,7 +39,6 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Exclude specific file from caching
   if (event.request.url.endsWith('assets/js/service-worker.js')) {
     return fetch(event.request);
   }
