@@ -13,18 +13,14 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background: linear-gradient(135deg, #1b1b2f, #6a0572);
+      background-color: #1b1b2f; /* Dark background */
       font-family: 'Poppins', sans-serif;
-      color: #e0e0e0;
+      color: #ffffff; /* Light text color */
       overflow: hidden;
     }
 
     .typing-container {
-      font-size: 2em;
-      color: transparent;
-      background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff);
-      -webkit-background-clip: text;
-      background-clip: text;
+      font-size: 3em; /* Increased font size */
       white-space: nowrap;
       border-right: 2px solid #f72585;
       animation: blink 0.7s steps(1) infinite;
@@ -38,18 +34,26 @@
 
     .highlight {
       font-weight: bold;
-      color: transparent;
-      background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff);
+      background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff); /* Gradient for Gen of Gaming */
       -webkit-background-clip: text;
-      background-clip: text;
+      -webkit-text-fill-color: transparent; /* Fill text with the gradient */
+      color: transparent; /* Hide original color */
+    }
+
+    .proton-highlight {
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff); /* Gradient for Proton Games */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; /* Fill text with the gradient */
+      color: transparent; /* Hide original color */
     }
 
     .explore-button {
       margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1.2em;
+      padding: 15px 30px; /* Increased padding */
+      font-size: 1.5em; /* Increased font size */
       color: #ffffff;
-      background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff);
+      background-color: #4c4c66; /* Dark button background matching theme */
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -58,7 +62,7 @@
     }
 
     .explore-button:hover {
-      background: linear-gradient(90deg, #c084fc, #0073ff, #ff4ec7);
+      background-color: #6a0572; /* Button hover color matching theme */
       transform: scale(1.05);
     }
 
@@ -75,8 +79,8 @@
 
   <script>
     const texts = [
-      { fullText: "Proton Games", highlightIndex: 0, highlightLength: 6 },
-      { fullText: "The Next Gen of Gaming", highlightIndex: 11, highlightLength: 6 }
+      { fullText: "Proton Games", highlightIndex: 0, highlightLength: 12 }, // Highlight "Proton Games"
+      { fullText: "The Next Gen of Gaming", highlightIndex: 11, highlightLength: 6 } // Highlight "Gen of Gaming"
     ];
 
     let textIndex = 0;
@@ -85,6 +89,7 @@
     const typingText = document.getElementById("typing-text");
 
     function type() {
+      typingText.innerHTML = ''; 
       const currentTextObj = texts[textIndex];
       const { fullText, highlightIndex, highlightLength } = currentTextObj;
       const beforeHighlight = fullText.slice(0, highlightIndex);
@@ -95,7 +100,6 @@
       const afterHighlight = fullText.slice(highlightIndex + highlightLength);
 
       if (isDeleting) {
-        typingText.innerHTML = fullText.substring(0, charIndex);
         charIndex--;
         if (charIndex < 0) {
           isDeleting = false;
@@ -105,21 +109,22 @@
           return;
         }
       } else {
-        let displayedText = fullText.substring(0, charIndex);
-        if (charIndex > highlightIndex && charIndex <= highlightIndex + highlightLength) {
-          displayedText = `${beforeHighlight}${highlighted}${afterHighlight.substring(0, charIndex - highlightIndex - highlightLength)}`;
-        }
-        typingText.innerHTML = displayedText;
-        charIndex++;
-        if (charIndex === fullText.length + 1) {
+        if (charIndex < fullText.length) {
+          charIndex++;
+        } else {
           isDeleting = true;
           setTimeout(type, 1000);
           return;
         }
       }
 
-      // Adjust typing speed for smoother transitions
-      const typingSpeed = isDeleting ? 50 : charIndex === fullText.length ? 300 : 150;
+      let displayedText = fullText.substring(0, charIndex);
+      if (charIndex > highlightIndex && charIndex <= highlightIndex + highlightLength) {
+        displayedText = `${beforeHighlight}<span class="proton-highlight">${fullText.slice(0, highlightIndex)}</span>${highlighted}${afterHighlight.substring(0, charIndex - highlightIndex - highlightLength)}`;
+      }
+      typingText.innerHTML = displayedText;
+
+      const typingSpeed = isDeleting ? 75 : charIndex === fullText.length ? 200 : 150;
       setTimeout(type, typingSpeed);
     }
 
@@ -127,8 +132,8 @@
       window.location.href = "https://example.com";
     }
 
-    window.onload = function() {
-      typingText.innerHTML = "";  // Ensure nothing is displayed on load
+    window.onload = () => {
+      // Clear the text on load
       type();
     };
   </script>
