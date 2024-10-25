@@ -118,7 +118,8 @@
         }
       }
 
-      const typingSpeed = isDeleting ? 75 : charIndex === fullText.length ? 200 : 150;
+      // Adjust typing speed for smoother transitions
+      const typingSpeed = isDeleting ? 50 : charIndex === fullText.length ? 300 : 150;
       setTimeout(type, typingSpeed);
     }
 
@@ -126,7 +127,10 @@
       window.location.href = "https://example.com";
     }
 
-    window.onload = type;
+    window.onload = function() {
+      typingText.innerHTML = "";  // Ensure nothing is displayed on load
+      type();
+    };
   </script>
 </body>
 </html>
