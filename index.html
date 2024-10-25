@@ -8,36 +8,32 @@
   <style>
     body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
-      background-color: #1b1b2f;
+      background: linear-gradient(135deg, #1b1b2f, #6a0572);
       font-family: 'Poppins', sans-serif;
       color: #e0e0e0;
+      overflow: hidden;
     }
 
     .typing-container {
-      font-size: 1.8em;
+      font-size: 2em;
       color: transparent;
       background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff);
       -webkit-background-clip: text;
       background-clip: text;
-      overflow: hidden;
       white-space: nowrap;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 2px;
-      background-color: #f72585;
+      border-right: 2px solid #f72585;
       animation: blink 0.7s steps(1) infinite;
-      margin-left: 2px;
+      padding-right: 5px;
     }
 
     @keyframes blink {
-      0%, 50% { opacity: 1; }
-      50%, 100% { opacity: 0; }
+      0%, 50% { border-color: transparent; }
+      50%, 100% { border-color: #f72585; }
     }
 
     .highlight {
@@ -47,16 +43,40 @@
       -webkit-background-clip: text;
       background-clip: text;
     }
+
+    .explore-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      color: #ffffff;
+      background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      outline: none;
+    }
+
+    .explore-button:hover {
+      background: linear-gradient(90deg, #c084fc, #0073ff, #ff4ec7);
+      transform: scale(1.05);
+    }
+
+    .explore-button:focus {
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+    }
   </style>
 </head>
 <body>
   <div class="typing-container">
-    <span id="typing-text"></span><span class="cursor">|</span>
+    <span id="typing-text"></span>
   </div>
+  <button class="explore-button" onclick="exploreCosmics()">Explore the Cosmics</button>
+
   <script>
     const texts = [
       { fullText: "Proton Games", highlightIndex: 0, highlightLength: 6 },
-      { fullText: "Next Gen of Gaming", highlightIndex: 11, highlightLength: 6 }
+      { fullText: "The Next Gen of Gaming", highlightIndex: 11, highlightLength: 6 }
     ];
 
     let textIndex = 0;
@@ -68,7 +88,10 @@
       const currentTextObj = texts[textIndex];
       const { fullText, highlightIndex, highlightLength } = currentTextObj;
       const beforeHighlight = fullText.slice(0, highlightIndex);
-      const highlighted = `<span class="highlight">${fullText.slice(highlightIndex, highlightIndex + highlightLength)}</span>`;
+      const highlighted = `<span class="highlight">${fullText.slice(
+        highlightIndex,
+        highlightIndex + highlightLength
+      )}</span>`;
       const afterHighlight = fullText.slice(highlightIndex + highlightLength);
 
       if (isDeleting) {
@@ -95,8 +118,12 @@
         }
       }
 
-      const typingSpeed = isDeleting ? 100 : (textIndex === 1 && charIndex > 1 && charIndex < 10) ? 50 : 200;
+      const typingSpeed = isDeleting ? 75 : charIndex === fullText.length ? 200 : 150;
       setTimeout(type, typingSpeed);
+    }
+
+    function exploreCosmics() {
+      window.location.href = "https://example.com";
     }
 
     window.onload = type;
