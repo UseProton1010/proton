@@ -61,12 +61,6 @@
     .explore-button:focus {
       box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
     }
-    
-    .iframe {
-      height: 100vh;
-      width: 100vw;
-      border: none; /* Remove iframe border */
-    }
   </style>
 </head>
 <body>
@@ -121,11 +115,15 @@
     function exploreCosmics() {
       // Create an iframe element
       const frame = document.createElement("iframe");
-      frame.classList.add("iframe"); // Add the class to the iframe
       frame.setAttribute("src", "./launcher.html"); // Set the source to your HTML file
+      
+      // Set iframe styles directly in JavaScript
+      frame.style.height = "100vh"; // Full viewport height
+      frame.style.width = "100vw"; // Full viewport width
+      frame.style.border = "none"; // Remove border
 
       // Clear existing content and append the iframe
-      document.body.innerHTML = ''; // Clear the body
+      // Clear the body
       document.body.appendChild(frame); // Append the iframe to the body
     }
 
