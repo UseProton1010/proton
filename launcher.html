@@ -1,9 +1,89 @@
-<h1>Testing</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Games</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .game-card {
+            background-color: #162447;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            width: 150px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .game-card:hover {
+            transform: scale(1.05);
+        }
+        .game-icon {
+            width: 100%;
+            height: auto;
+        }
+        .game-name {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Games</h1>
+    <div class="game-container" id="gameContainer"></div>
+
+    <script>
+        const games = [
+            { "icon": "https://example.com/icon1.png", "path": "https://example.com/game1", "error": false, "name": "Game 1" },
+            { "icon": "https://example.com/icon2.png", "path": "https://example.com/game2", "error": false, "name": "Game 2" },
+            { "icon": "https://example.com/icon3.png", "path": "https://example.com/game3", "error": true, "name": "Game 3" }
+        ];
+
+        const gameContainer = document.getElementById('gameContainer');
+        games.forEach(({ icon, path, error, name }) => {
+            const gameCard = document.createElement('div');
+            gameCard.className = 'game-card';
+            gameCard.onclick = () => {
+                if (!error) {
+                    localStorage.setItem('@proton/path', path);
+                    window.location.href = './fullscreen.html';
+                } else {
+                    alert('Error: This game is not available.');
+                }
+            };
+
+            const gameIcon = document.createElement('img');
+            gameIcon.src = icon;
+            gameIcon.alt = name;
+            gameIcon.className = 'game-icon';
+
+            const gameName = document.createElement('div');
+            gameName.className = 'game-name';
+            gameName.innerText = name;
+
+            gameCard.append(gameIcon, gameName);
+            gameContainer.appendChild(gameCard);
+        });
+    </script>
+</body>
+</html>
 
 <style>
   body {
-  background-color: #1b1b2f; /* Dark background */
+  background-color: #1b1b2f; 
       font-family: 'Poppins', sans-serif;
-      color: #ffffff; /* Light text color */
+      color: #ffffff; 
   }
 </style>
