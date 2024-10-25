@@ -34,15 +34,7 @@
 
     .highlight {
       font-weight: bold;
-      background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff); /* Gradient for Gen of Gaming */
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; /* Fill text with the gradient */
-      color: transparent; /* Hide original color */
-    }
-
-    .proton-highlight {
-      font-weight: bold;
-      background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff); /* Gradient for Proton Games */
+      background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff); /* Gradient for highlighted text */
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent; /* Fill text with the gradient */
       color: transparent; /* Hide original color */
@@ -79,9 +71,15 @@
 
   <script>
     const texts = [
-      { fullText: "Proton Games", highlightIndex: 0, highlightLength: 12 }, // Highlight "Proton Games"
-      { fullText: "The Next Gen of Gaming", highlightIndex: 11, highlightLength: 6 } // Highlight "Gen of Gaming"
+      { text: "Proton Games", highlight: true }, // Highlighted text
+      { text: "The Next Gen of Gaming", highlight: true } // Highlighted text
     ];
+
+    const highlightText = (text, highlight) => {
+      return highlight 
+        ? `<span class="highlight">${text}</span>` 
+        : text;
+    };
 
     let textIndex = 0;
     let charIndex = 0;
@@ -89,41 +87,28 @@
     const typingText = document.getElementById("typing-text");
 
     function type() {
-      const currentTextObj = texts[textIndex];
-      const { fullText, highlightIndex, highlightLength } = currentTextObj;
-      const beforeHighlight = fullText.slice(0, highlightIndex);
-      const highlighted = `<span class="highlight">${fullText.slice(
-        highlightIndex,
-        highlightIndex + highlightLength
-      )}</span>`;
-      const afterHighlight = fullText.slice(highlightIndex + highlightLength);
+      const currentText = texts[textIndex].text;
+      const displayText = currentText.substring(0, charIndex);
+      typingText.innerHTML = highlightText(displayText, texts[textIndex].highlight);
 
       if (isDeleting) {
         charIndex--;
         if (charIndex < 0) {
           isDeleting = false;
-          textIndex = (textIndex + 1) % texts.length;
-          charIndex = 0;
-          setTimeout(type, 500);
+          textIndex = (textIndex + 1) % texts.length; // Move to the next text
+          setTimeout(type, 500); // Delay before starting the next text
           return;
         }
       } else {
-        if (charIndex < fullText.length) {
-          charIndex++;
-        } else {
+        charIndex++;
+        if (charIndex > currentText.length) {
           isDeleting = true;
-          setTimeout(type, 1000);
+          setTimeout(type, 1000); // Pause after typing the full text
           return;
         }
       }
 
-      let displayedText = fullText.substring(0, charIndex);
-      if (charIndex > highlightIndex && charIndex <= highlightIndex + highlightLength) {
-        displayedText = `${beforeHighlight}<span class="proton-highlight">${fullText.slice(0, highlightIndex)}</span>${highlighted}${afterHighlight.substring(0, charIndex - highlightIndex - highlightLength)}`;
-      }
-      typingText.innerHTML = displayedText;
-
-      const typingSpeed = isDeleting ? 75 : charIndex === fullText.length ? 200 : 150;
+      const typingSpeed = isDeleting ? 75 : 150; // Speed adjustment
       setTimeout(type, typingSpeed);
     }
 
@@ -132,8 +117,7 @@
     }
 
     window.onload = () => {
-      // Clear the text on load
-      typingText.innerHTML = ''; 
+      typingText.innerHTML = ''; // Clear the text on load
       type();
     };
   </script>
