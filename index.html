@@ -61,11 +61,11 @@
     .explore-button:focus {
       box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
     }
-
+    
     .iframe {
       height: 100vh;
       width: 100vw;
-      border: none; /* Optional: Remove border */
+      border: none; /* Remove iframe border */
     }
   </style>
 </head>
@@ -119,19 +119,19 @@
     }
 
     function exploreCosmics() {
+      // Create an iframe element
       const frame = document.createElement("iframe");
-      frame.classList.add("iframe");
-      frame.setAttribute("src", "launcher.html");
-      frame.setAttribute("frameborder", "0"); // Optional: to remove the border
-      frame.setAttribute("allowfullscreen", ""); // Optional: to allow fullscreen
+      frame.classList.add("iframe"); // Add the class to the iframe
+      frame.setAttribute("src", "./launcher.html"); // Set the source to your HTML file
 
-      document.body.innerHTML = ''; // Clear existing content
+      // Clear existing content and append the iframe
+      document.body.innerHTML = ''; // Clear the body
       document.body.appendChild(frame); // Append the iframe to the body
     }
 
     window.onload = () => {
       typingText.innerHTML = ''; // Clear the text on load
-      type();
+      type(); // Start typing effect
     };
   </script>
 </body>
