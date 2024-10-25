@@ -2,12 +2,8 @@
 const CACHE_NAME = 'proton-v0.0.1';
 let urlsToCache = [
   'index.html',
-  'games/index.html',
-  'assets/css/',
-  'assets/js/',
-  'assets/navbar.html',
-  'games/display.html',
-  'games/fullscreen.html'
+  'launcher.html',
+  'fullscreen.html'
 
   // Add more URLs to cache as needed
 ];
