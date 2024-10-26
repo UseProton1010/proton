@@ -127,13 +127,7 @@
     }
 
     function exploreCosmics() {
-      const frame = document.createElement("iframe");
-      frame.setAttribute("src", "launcher.html");
-      frame.style.height = "100vh";
-      frame.style.width = "100vw";
-      frame.style.border = "none";
-      document.body.innerHTML = '';
-      document.body.appendChild(frame);
+      window.location.href = "launcher.html"
     }
 
     window.onload = () => {
