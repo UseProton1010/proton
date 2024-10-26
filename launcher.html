@@ -59,24 +59,23 @@
     <div class="game-container" id="gameContainer"></div>
 
     <script>
-        const games = [
-            { "icon": "games/Yohoho/IMG_4103.jpeg", "path": "/proton/games/Yohoho/index.html", "error": false, "name": "Yohoho.io" },
-            { "icon": "games/Cookie-Clicker/IMG_1709.jpeg", "path": "/proton/games/Cookie-Clicker/index.html", "error": false, "name": "Cookie Clicker" },
-            { "icon": "games/retro-bowl/retro.png", "path": "/proton/games/retro-bowl/index.html", "error": false, "name": "Retro Bowl" },
-            { "icon": "games/2048/2048.png", "path": "/proton/games/2048/index.html", "error": false, "name": "2048" },
-            { "icon": "games/Bitlife/splash.png", "path": "/proton/games/Bitlife/index.html", "error": false, "name": "Bitlife" },
-            { "icon": "games/CSGO-Clicker/IMG_2626.png", "path": "/proton/games/CSGO-Clicker/index.html", "error": false, "name": "CSGO Clicker" },
-            { "icon": "games/Doge-Miner/IMG_2627.png", "path": "/proton/games/Doge-Miner/IMG_2627.png", "error": false, "name": "Doge Miner" },
-            { "icon": "games/BlockBlast/IMG_2625.jpeg", "path": "/proton/games/BlockBlast/index.html", "error": false, "name": "BlockBlast" },
-            { "icon": "games/DriveMad/DriveMad.jpg", "path": "/proton/games/DriveMad/index.html", "error": false, "name": "Drive Mad" },
-            { "icon": "games/Dunes/Dunes.jpeg", "path": "/proton/games/Dunes/index.html", "error": false, "name": "Dunes" }
-            { "icon": "games/EuroCup/splash.png", "path": "/proton/games/EuroCup/index.html", "error": false, "name": "Eurocup" },
-            { "icon": "games/Geo-Dash-Subzero/IMG_0858.png", "path": "/proton/games/Geo-Dash-Subzero/index.html", "error": false, "name": "Geodash subzero" },
-            { "icon": "games/Idle-Breakout/IMG_3996.png", "path": "/proton/games/Idle-Breakout/index.html", "error": false, "name": "Idle Breakout" },
-            { "icon": "games/Monkey-Mart/IMG_2630.jpeg", "path": "/proton/games/Monkey-Mart/index.html", "error": false, "name": "Monkey Mart" },
-            { "icon": "games/Subway-Surfers/IMG_2631.jpeg", "path": "/proton/games/Subway-Surfers/index.html", "error": false, "name": "Subway Surfers" },
-            { "icon": "games/Swoop/Swoop.jpeg", "path": "/proton/games/Swoop/index.html", "error": false, "name": "Swoop" },
-                ];
+  const games = [
+    { "icon": "games/Yohoho/IMG_4103.jpeg", "path": "/proton/games/Yohoho/index.html", "error": false, "name": "Yohoho.io" },
+    { "icon": "games/Cookie-Clicker/IMG_1709.jpeg", "path": "/proton/games/Cookie-Clicker/index.html", "error": false, "name": "Cookie Clicker" },
+    { "icon": "games/retro-bowl/retro.png", "path": "/proton/games/retro-bowl/index.html", "error": false, "name": "Retro Bowl" },
+    { "icon": "games/2048/2048.png", "path": "/proton/games/2048/index.html", "error": false, "name": "2048" },
+    { "icon": "games/Bitlife/splash.png", "path": "/proton/games/Bitlife/index.html", "error": false, "name": "Bitlife" },
+    { "icon": "games/CSGO-Clicker/IMG_2626.png", "path": "/proton/games/CSGO-Clicker/index.html", "error": false, "name": "CSGO Clicker" },
+    { "icon": "games/Doge-Miner/IMG_2627.png", "path": "/proton/games/Doge-Miner/IMG_2627.png", "error": false, "name": "Doge Miner" },
+    { "icon": "games/BlockBlast/IMG_2625.jpeg", "path": "/proton/games/BlockBlast/index.html", "error": false, "name": "BlockBlast" },
+    { "icon": "games/DriveMad/DriveMad.jpg", "path": "/proton/games/DriveMad/index.html", "error": false, "name": "Drive Mad" },  
+    { "icon": "games/EuroCup/splash.png", "path": "/proton/games/EuroCup/index.html", "error": false, "name": "Eurocup" },
+    { "icon": "games/Geo-Dash-Subzero/IMG_0858.png", "path": "/proton/games/Geo-Dash-Subzero/index.html", "error": false, "name": "Geodash subzero" },
+    { "icon": "games/Idle-Breakout/IMG_3996.png", "path": "/proton/games/Idle-Breakout/index.html", "error": false, "name": "Idle Breakout" },
+    { "icon": "games/Monkey-Mart/IMG_2630.jpeg", "path": "/proton/games/Monkey-Mart/index.html", "error": false, "name": "Monkey Mart" },
+    { "icon": "games/Subway-Surfers/IMG_2631.jpeg", "path": "/proton/games/Subway-Surfers/index.html", "error": false, "name": "Subway Surfers" },
+    { "icon": "games/Swoop/Swoop.jpeg", "path": "/proton/games/Swoop/index.html", "error": false, "name": "Swoop" },
+];
 
         const gameContainer = document.getElementById('gameContainer');
         const lastPlayedContainer = document.getElementById('lastPlayedContainer');
