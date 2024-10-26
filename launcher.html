@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <name>Proton</name>
+    <title>Proton Games</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -55,85 +55,65 @@
     <div class="game-container" id="gameContainer"></div>
 
     <script>
-        const game = [
+        // Retrieve last played games from local storage
+        const lastPlayedGames = JSON.parse(localStorage.getItem('@proton/path')) || [];
+        
+        // Define all available games
+        const allGames = [
             { "name": "Yohoho.io", "icon": "/assets/img/yohoho.jpeg", "path": "/games/Yohoho/index.html", "error": "false" },
             { "name": "Monkey Mart", "icon": "/assets/img/monkey-mart.png", "path": "/games/Monkey-Mart/monkey-mart/index.html", "error": "false" },
             { "name": "DriveMad", "icon": "/assets/img/DriveMad.jpeg", "path": "/games/DriveMad/index.html", "error": "false" },
             { "name": "2048", "icon": "/assets/img/2048.png", "path": "/games/2048/index.html", "error": "false" },
-            { "name": "Awesome Tanks", "icon": "/assets/img/awesome-tanks.jpeg", "path": "/games/awesome-tanks/index.html", "error": "false" },
-            { "name": "Awesome Tanks 2", "icon": "/assets/img/awesome-tanks2.jpeg", "path": "/games/awesome-tanks2/index.html", "error": "false" },
-            { "name": "Bitlife", "icon": "/assets/img/bitlife.png", "path": "/games/Bitlife/index.html", "error": "false" },
-            { "name": "Subway Surfers", "icon": "/assets/img/splash.jpeg", "path": "/games/Subway-Surfers/index.html", "error": "false" },
-            { "name": "Subway Surfers New York", "icon": "/assets/img/SSNY.jpeg", "path": "/games/subway-surfers-ny/index.html", "error": "false" },
-            { "name": "tanuki sunset", "icon": "/assets/img/TS.png", "path": "/games/tanuki-sunset/index.html", "error": "false" },
-            { "name": "Core Ball", "icon": "/assets/img/CB.jpeg", "path": "/games/core-ball/index.html", "error": "false" },
-            { "name": "Doge Miner", "icon": "/assets/img/DM.png", "path": "/games/Doge-Miner/index.html", "error": "false" },
-            { "name": "Tiny Fishing", "icon": "/assets/img/TF.png", "path": "/games/tiny-fishing/index.html", "error": "false" },
-            { "name": "Dift Boss", "icon": "/assets/img/drift-boss.png", "path": "/games/drift-boss/index.html", "error": "false" },
-            { "name": "Cookie Clicker", "icon": "/assets/img/CC.JPG", "path": "/games/Cookie-Clicker/index.html", "error": "false" },
-            { "name": "Idle Breakout", "icon": "/assets/img/IB.JPG", "path": "/games/Idle-Breakout/index.html", "error": "false" },
-            { "name": "CSGO Clicker", "icon": "/assets/img/CSGO.png", "path": "/games/CSGO-Clicker/index.html", "error": "false" },
-            { "name": "Swoop", "icon": "/assets/img/Swoop.jpeg", "path": "/games/Swoop/index.html", "error": "false" },
-            { "name": "Color Switch", "icon": "/assets/img/CS.jpeg", "path": "/games/Color-Switch/index.html", "error": "false" },
-            { "name": "Dunes", "icon": "/assets/img/Dunes.jpeg", "path": "/games/Dunes/index.html", "error": "false" },
-            { "name": "OvO", "icon": "/assets/img/OvO.PNG", "link": "https://www.coolmathgames.com/0-ovo/play", "error": "false" },
-            { "name": "Edge Surf", "icon": "/assets/img/ES.JPG", "path": "/games/edge-surf/index.html", "error": "false" },
-            { "name": "Champion Island", "icon": "/assets/img/CI.PNG", "path": "/games/champion-island/index.html", "error": "false" },
-            { "name": "Stickman Hook", "icon": "/assets/img/SH.jpeg", "path": "/games/stickman-hook/index.html", "error": "false" },
-            { "name": "Draw the Hill", "icon": "/assets/img/DTH.jpeg", "path": "/games/draw-the-hill/index.html", "error": "false" },
-            { "name": "Wordle", "icon": "/assets/img/Wordle.png", "path": "/games/wordle/index.html", "error": "false" },
-            { "name": "Ballistic Chicken", "icon": "/assets/img/BC.jpeg", "path": "/games/ballistic-chickens/index.html", "error": "false" },
-            { "name": "Paper Io 2", "icon": "/assets/img/pi2.jpeg", "path": "./games/paperio2", "error": "false" },
-            { "name": "geometry dash", "icon": "./assets/img/IMG_2436.jpeg", "path": "/games/geodash/geodash/index.html", "error": "false" },
-            { "name": "pixel gun survival", "icon": "./assets/img/IMG_2438.jpeg", "path": "/games/pixel-gun-survival/pixel-gun-survival", "error": "false" },
-            { "name": "idle shark", "icon": "./assets/img/IMG_2449.jpeg", "path": "/games/idle-shark/idle-shark", "error": "false" },
-            { "name": "Block Blast", "icon": "./assets/img/IMG_2459.jpeg", "path": "./games/BlockBlast/index.html", "error": "false" },
-            { "name": "Block Blast", "icon": "./games/angry-sharks/assets/favicon/icon-512x512.png", "path": "./games/angry-sharks/index.html", "error": "false" },
-            { "name": "Basketball random", "icon": "./games/basket-random/splash.jpeg", "path": "./games/basket-random/index.html", "error": "false" },
-            { "name": "basketball cannon", "icon": "./games/cannon-basketball-4/img/splash.png", "path": "./games/cannon-basketball-4/index.html", "error": "false" },
-            { "name": "basketball game", "icon": "./games/basketball-game/splash.png", "path": "./games/basketball-game/index.html", "error": "false" }
+            // Add more games as needed
         ];
 
-        const games = game.filter(game => !game.link).map(game => ({
-            name: game.name,
-            icon: game.icon,
-            path: game.path,
-            error: game.error
-        }));
+        // Function to handle game click event
+        function handleGameClick(game) {
+            // Check if the game has an error
+            if (game.error === "false") {
+                // Add the game to the Recently Played section
+                if (!lastPlayedGames.some(lastGame => lastGame.name === game.name)) {
+                    lastPlayedGames.push(game); // Add the game to the last played list
+                }
+                localStorage.setItem('@proton/path', JSON.stringify(lastPlayedGames)); // Store it in localStorage
+                
+                // Redirect to fullscreen.html
+                window.location.href = './fullscreen.html';
+            } else {
+                // If there is an error, show an alert
+                alert('This game is currently unavailable.');
+            }
+        }
 
-        const gameContainer = document.getElementById('gameContainer');
-        const lastPlayedContainer = document.getElementById('lastPlayedContainer');
+        // Function to display games in a specified container
+        function displayGames(games, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = ''; // Clear existing content
+            games.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.onclick = () => handleGameClick(game);
 
-        function loadLastPlayedGames() {
-            const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
-            lastPlayed.forEach(({ icon, path, name }) => {
-                createGameCard(lastPlayedContainer, icon, path, name, false);
+                const img = document.createElement('img');
+                img.src = game.icon;
+                img.alt = game.name;
+                img.className = 'game-icon';
+
+                const name = document.createElement('div');
+                name.className = 'game-name';
+                name.textContent = game.name;
+
+                card.appendChild(img);
+                card.appendChild(name);
+                container.appendChild(card);
             });
         }
 
-        function createGameCard(container, icon, path, name, error) {
-            const gameCard = document.createElement('div');
-            gameCard.className = 'game-card';
-            gameCard.innerHTML = `
-                <img src="${icon}" alt="${name}" class="game-icon">
-                <div class="game-name">${name}</div>
-            `;
-            gameCard.onclick = () => {
-                if (!error) {
-                    localStorage.setItem('@proton/ls', JSON.stringify([{ icon: game.icon, path: game.path, name: game.name }]));
-                    window.location.href = "./fullscreen.html";
-                } else {
-                    alert("The game is not available.");
-                }
-            };
-            container.appendChild(gameCard);
-        }
+        // Display the games in both sections
+        displayGames(allGames, 'gameContainer');
 
-        games.forEach(game => {
-            createGameCard(gameContainer, game.icon, game.path, game.name, game.error === "true");
-        });
-
-        loadLastPlayedGames();
+        // Display the last played games if any
+        displayGames(lastPlayedGames, 'lastPlayedContainer');
     </script>
 </body>
 </html>
