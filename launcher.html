@@ -22,7 +22,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            justify-content: center; /* Center the game cards */
+            justify-content: center;
         }
         .game-card {
             background-color: #162447;
@@ -56,233 +56,50 @@
 
     <script>
         const game = [
-  {
-    "name": "Yohoho.io",
-    "icon": "/assets/img/yohoho.jpeg",
-    "path": "/games/Yohoho/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Monkey Mart",
-    "icon": "/assets/img/monkey-mart.png",
-    "path": "/games/Monkey-Mart/monkey-mart/index.html",
-    "error": "false"
-  },
-  {
-    "name": "DriveMad",
-    "icon": "/assets/img/DriveMad.jpeg",
-    "path": "/games/DriveMad/index.html",
-    "error": "false"
-  },
-  {
-    "name": "2048",
-    "icon": "/assets/img/2048.png",
-    "path": "/games/2048/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Awesome Tanks",
-    "icon": "/assets/img/awesome-tanks.jpeg",
-    "path": "/games/awesome-tanks/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Awesome Tanks 2",
-    "icon": "/assets/img/awesome-tanks2.jpeg",
-    "path": "/games/awesome-tanks2/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Bitlife",
-    "icon": "/assets/img/bitlife.png",
-    "path": "/games/Bitlife/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Subway Surfers",
-    "icon": "/assets/img/splash.jpeg",
-    "path": "/games/Subway-Surfers/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Subway Surfers New York",
-    "icon": "/assets/img/SSNY.jpeg",
-    "path": "/games/subway-surfers-ny/index.html",
-    "error": "false"
-  },
-  {
-    "name": "tanuki sunset",
-    "icon": "/assets/img/TS.png",
-    "path": "/games/tanuki-sunset/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Core Ball",
-    "icon": "/assets/img/CB.jpeg",
-    "path": "/games/core-ball/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Doge Miner",
-    "icon": "/assets/img/DM.png",
-    "path": "/games/Doge-Miner/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Tiny Fishing",
-    "icon": "/assets/img/TF.png",
-    "path": "/games/tiny-fishing/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Dift Boss",
-    "icon": "/assets/img/drift-boss.png",
-    "path": "/games/drift-boss/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Cookie Clicker",
-    "icon": "/assets/img/CC.JPG",
-    "path": "/games/Cookie-Clicker/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Idle Breakout",
-    "icon": "/assets/img/IB.JPG",
-    "path": "/games/Idle-Breakout/index.html",
-    "error": "false"
-  },
-  {
-    "name": "CSGO Clicker",
-    "icon": "/assets/img/CSGO.png",
-    "path": "/games/CSGO-Clicker/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Swoop",
-    "icon": "/assets/img/Swoop.jpeg",
-    "path": "/games/Swoop/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Color Switch",
-    "icon": "/assets/img/CS.jpeg",
-    "path": "/games/Color-Switch/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Dunes",
-    "icon": "/assets/img/Dunes.jpeg",
-    "path": "/games/Dunes/index.html",
-    "error": "false"
-  },
-  {
-    "name": "OvO",
-    "icon": "/assets/img/OvO.PNG",
-    "link": "https://www.coolmathgames.com/0-ovo/play",
-    "error": "false"
-  },
-  {
-    "name": "Edge Surf",
-    "icon": "/assets/img/ES.JPG",
-    "path": "/games/edge-surf/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Champion Island",
-    "icon": "/assets/img/CI.PNG",
-    "path": "/games/champion-island/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Stickman Hook",
-    "icon": "/assets/img/SH.jpeg",
-    "path": "/games/stickman-hook/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Draw the Hill",
-    "icon": "/assets/img/DTH.jpeg",
-    "path": "/games/draw-the-hill/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Wordle",
-    "icon": "/assets/img/Wordle.png",
-    "path": "/games/wordle/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Ballistic Chicken",
-    "icon": "/assets/img/BC.jpeg",
-    "path": "/games/ballistic-chickens/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Paper Io 2",
-    "icon": "/assets/img/pi2.jpeg",
-    "path": "./games/paperio2",
-    "error": "false"
-  },
-  {
-    "name": "geometry dash",
-    "icon": "./assets/img/IMG_2436.jpeg",
-    "path": "/games/geodash/geodash/index.html",
-    "error": "false"
-  },
-  {
-    "name": "pixel gun survival",
-    "icon": "./assets/img/IMG_2438.jpeg",
-    "path": "/games/pixel-gun-survival/pixel-gun-survival",
-    "error": "false"
-  },
-  {
-    "name": "idle shark",
-    "icon": "./assets/img/IMG_2449.jpeg",
-    "path": "/games/idle-shark/idle-shark",
-    "error": "false"
-  },
-  {
-    "name": "Block Blast",
-    "icon": "./assets/img/IMG_2459.jpeg",
-    "path": "./games/BlockBlast/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Block Blast",
-    "icon": "./games/angry-sharks/assets/favicon/icon-512x512.png",
-    "path": "./games/angry-sharks/index.html",
-    "error": "false"
-  },
-  {
-    "name": "Basketball random",
-    "icon": "./games/basket-random/splash.jpeg",
-    "path": "./games/basket-random/index.html",
-    "error": "false"
-  },
-  {
-    "name": "basketball cannon",
-    "icon": "./games/cannon-basketball-4/img/splash.png",
-    "path": "./games/cannon-basketball-4/index.html",
-    "error": "false"
-  },
-  {
-    "name": "basketball game",
-    "icon": "./games/basketball-game/splash.png",
-    "path": "./games/basketball-game/index.html",
-    "error": "false"
-  }
-];
+            { "name": "Yohoho.io", "icon": "/assets/img/yohoho.jpeg", "path": "/games/Yohoho/index.html", "error": "false" },
+            { "name": "Monkey Mart", "icon": "/assets/img/monkey-mart.png", "path": "/games/Monkey-Mart/monkey-mart/index.html", "error": "false" },
+            { "name": "DriveMad", "icon": "/assets/img/DriveMad.jpeg", "path": "/games/DriveMad/index.html", "error": "false" },
+            { "name": "2048", "icon": "/assets/img/2048.png", "path": "/games/2048/index.html", "error": "false" },
+            { "name": "Awesome Tanks", "icon": "/assets/img/awesome-tanks.jpeg", "path": "/games/awesome-tanks/index.html", "error": "false" },
+            { "name": "Awesome Tanks 2", "icon": "/assets/img/awesome-tanks2.jpeg", "path": "/games/awesome-tanks2/index.html", "error": "false" },
+            { "name": "Bitlife", "icon": "/assets/img/bitlife.png", "path": "/games/Bitlife/index.html", "error": "false" },
+            { "name": "Subway Surfers", "icon": "/assets/img/splash.jpeg", "path": "/games/Subway-Surfers/index.html", "error": "false" },
+            { "name": "Subway Surfers New York", "icon": "/assets/img/SSNY.jpeg", "path": "/games/subway-surfers-ny/index.html", "error": "false" },
+            { "name": "tanuki sunset", "icon": "/assets/img/TS.png", "path": "/games/tanuki-sunset/index.html", "error": "false" },
+            { "name": "Core Ball", "icon": "/assets/img/CB.jpeg", "path": "/games/core-ball/index.html", "error": "false" },
+            { "name": "Doge Miner", "icon": "/assets/img/DM.png", "path": "/games/Doge-Miner/index.html", "error": "false" },
+            { "name": "Tiny Fishing", "icon": "/assets/img/TF.png", "path": "/games/tiny-fishing/index.html", "error": "false" },
+            { "name": "Dift Boss", "icon": "/assets/img/drift-boss.png", "path": "/games/drift-boss/index.html", "error": "false" },
+            { "name": "Cookie Clicker", "icon": "/assets/img/CC.JPG", "path": "/games/Cookie-Clicker/index.html", "error": "false" },
+            { "name": "Idle Breakout", "icon": "/assets/img/IB.JPG", "path": "/games/Idle-Breakout/index.html", "error": "false" },
+            { "name": "CSGO Clicker", "icon": "/assets/img/CSGO.png", "path": "/games/CSGO-Clicker/index.html", "error": "false" },
+            { "name": "Swoop", "icon": "/assets/img/Swoop.jpeg", "path": "/games/Swoop/index.html", "error": "false" },
+            { "name": "Color Switch", "icon": "/assets/img/CS.jpeg", "path": "/games/Color-Switch/index.html", "error": "false" },
+            { "name": "Dunes", "icon": "/assets/img/Dunes.jpeg", "path": "/games/Dunes/index.html", "error": "false" },
+            { "name": "OvO", "icon": "/assets/img/OvO.PNG", "link": "https://www.coolmathgames.com/0-ovo/play", "error": "false" },
+            { "name": "Edge Surf", "icon": "/assets/img/ES.JPG", "path": "/games/edge-surf/index.html", "error": "false" },
+            { "name": "Champion Island", "icon": "/assets/img/CI.PNG", "path": "/games/champion-island/index.html", "error": "false" },
+            { "name": "Stickman Hook", "icon": "/assets/img/SH.jpeg", "path": "/games/stickman-hook/index.html", "error": "false" },
+            { "name": "Draw the Hill", "icon": "/assets/img/DTH.jpeg", "path": "/games/draw-the-hill/index.html", "error": "false" },
+            { "name": "Wordle", "icon": "/assets/img/Wordle.png", "path": "/games/wordle/index.html", "error": "false" },
+            { "name": "Ballistic Chicken", "icon": "/assets/img/BC.jpeg", "path": "/games/ballistic-chickens/index.html", "error": "false" },
+            { "name": "Paper Io 2", "icon": "/assets/img/pi2.jpeg", "path": "./games/paperio2", "error": "false" },
+            { "name": "geometry dash", "icon": "./assets/img/IMG_2436.jpeg", "path": "/games/geodash/geodash/index.html", "error": "false" },
+            { "name": "pixel gun survival", "icon": "./assets/img/IMG_2438.jpeg", "path": "/games/pixel-gun-survival/pixel-gun-survival", "error": "false" },
+            { "name": "idle shark", "icon": "./assets/img/IMG_2449.jpeg", "path": "/games/idle-shark/idle-shark", "error": "false" },
+            { "name": "Block Blast", "icon": "./assets/img/IMG_2459.jpeg", "path": "./games/BlockBlast/index.html", "error": "false" },
+            { "name": "Block Blast", "icon": "./games/angry-sharks/assets/favicon/icon-512x512.png", "path": "./games/angry-sharks/index.html", "error": "false" },
+            { "name": "Basketball random", "icon": "./games/basket-random/splash.jpeg", "path": "./games/basket-random/index.html", "error": "false" },
+            { "name": "basketball cannon", "icon": "./games/cannon-basketball-4/img/splash.png", "path": "./games/cannon-basketball-4/index.html", "error": "false" },
+            { "name": "basketball game", "icon": "./games/basketball-game/splash.png", "path": "./games/basketball-game/index.html", "error": "false" }
+        ];
 
-const games = game.filter(game => !game.link).map(game => ({
-  name: game.name,
-  icon: game.icon,
-  path: game.path,
-  error: game.error
-}));
-
-console.log(games);
-
+        const games = game.filter(game => !game.link).map(game => ({
+            name: game.name,
+            icon: game.icon,
+            path: game.path,
+            error: game.error
+        }));
 
         const gameContainer = document.getElementById('gameContainer');
         const lastPlayedContainer = document.getElementById('lastPlayedContainer');
@@ -297,55 +114,25 @@ console.log(games);
         function createGameCard(container, icon, path, name, error) {
             const gameCard = document.createElement('div');
             gameCard.className = 'game-card';
+            gameCard.innerHTML = `
+                <img src="${icon}" alt="${name}" class="game-icon">
+                <div class="game-name">${name}</div>
+            `;
             gameCard.onclick = () => {
                 if (!error) {
-                    localStorage.setItem('@proton/path', path);
-                    saveLastPlayedGame({ icon, path, name });
-                    window.location.href = './fullscreen.html';
+                    window.open(path);
                 } else {
-                    error('Error: This game is not available.');
+                    alert("The game is not available.");
                 }
             };
-
-            const gameIcon = document.createElement('img');
-            gameIcon.path = icon;
-            gameIcon.alt = name;
-            gameIcon.className = 'game-icon';
-
-            const gameName = document.createElement('div');
-            gameName.className = 'game-name';
-            gameName.innerText = name;
-
-            gameCard.append(gameIcon, gameName);
             container.appendChild(gameCard);
         }
 
-        function saveLastPlayedGame(game) {
-            const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
-            const existingIndex = lastPlayed.findIndex(item => item.path === game.path);
-            if (existingIndex !== -1) {
-                lastPlayed.splice(existingIndex, 1);
-            }
-            lastPlayed.unshift(game);
-            localStorage.setItem('@proton/ls', JSON.stringify(lastPlayed.slice(0, 5))); // Store only the last 5 played games
-        }
-
-        games.forEach(({ icon, path, error, name }) => {
-            createGameCard(gameContainer, icon, path, name, error);
+        games.forEach(game => {
+            createGameCard(gameContainer, game.icon, game.path, game.name, game.error === "true");
         });
 
         loadLastPlayedGames();
-        if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js')
-                .then((registration) => {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                })
-                .catch((error) => {
-                    console.error('Service Worker registration failed:', error);
-                });
-        });
-    }
     </script>
 </body>
 </html>
