@@ -1,5 +1,13 @@
 
 <script>
+  const path = localStorage.getItem("@proton/path")
+  const gameFrame = document.createElement("iframe");
+      gameFrame.setAttribute("src", path);
+      gameFrame.style.height = "100vh";
+      gameFrame.style.width = "100vw";
+      gameFrame.style.border = "none";
+      document.body.appendChild(gameFrame);
+  
   if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('./sw.js')
