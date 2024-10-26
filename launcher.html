@@ -81,7 +81,7 @@
                 if (!error) {
                     localStorage.setItem('@proton/path', path);
                     saveLastPlayedGame({ icon, path, name });
-                    window.location.href = './fullscreen.html';
+                    window.location.href = path;
                 } else {
                     alert('Error: This game is unavailble.');
                 }
