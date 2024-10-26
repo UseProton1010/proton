@@ -6,11 +6,12 @@
 
   const path = localStorage.getItem("@proton/path");
   if (path) {
-      const gameFrame = document.createElement("iframe");
-      gameFrame.setAttribute("src", path);
-      gameFrame.style.height = "100vh";
-      gameFrame.style.width = "100vw";
-      gameFrame.style.border = "none";
+      const gframe = document.createElement("iframe");
+      gframe.setAttribute("src", path);
+      gframe.style.height = "100vh";
+      gframe.style.width = "100vw";
+      gframe.style.border = "none";
+      document.body.innerHTML = '';
       document.body.appendChild(gameFrame);
   } else {
       alert("No game selected. Redirecting to the game list.");
