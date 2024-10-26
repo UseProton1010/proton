@@ -1,12 +1,15 @@
-
 <script>
-  const path = localStorage.getItem("@proton/path")
-  const gameFrame = document.createElement("iframe");
+  const path = localStorage.getItem("@proton/path");
+
+  if (path) {
+      const gameFrame = document.createElement("iframe");
       gameFrame.setAttribute("src", path);
       gameFrame.style.height = "100vh";
       gameFrame.style.width = "100vw";
       gameFrame.style.border = "none";
       document.body.appendChild(gameFrame);
-  
-  
+  } else {
+      alert("No game selected. Redirecting to the game list.");
+      window.location.href = "launcher.html"; 
+  }
 </script>
