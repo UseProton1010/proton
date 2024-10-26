@@ -88,10 +88,10 @@
             { "name": "pixel gun survival", "icon": "./assets/img/IMG_2438.jpeg", "path": "/games/pixel-gun-survival/pixel-gun-survival", "error": "false" },
             { "name": "idle shark", "icon": "./assets/img/IMG_2449.jpeg", "path": "/games/idle-shark/idle-shark", "error": "false" },
             { "name": "Block Blast", "icon": "./assets/img/IMG_2459.jpeg", "path": "./games/BlockBlast/index.html", "error": "false" },
-            { "name": "Block Blast", "icon": "./games/angry-sharks/assets/favicon/icon-512x512.png", "path": "./games/angry-sharks/index.html", "error": "false" },
-            { "name": "Basketball random", "icon": "./games/basket-random/splash.jpeg", "path": "./games/basket-random/index.html", "error": "false" },
-            { "name": "basketball cannon", "icon": "./games/cannon-basketball-4/img/splash.png", "path": "./games/cannon-basketball-4/index.html", "error": "false" },
-            { "name": "basketball game", "icon": "./games/basketball-game/splash.png", "path": "./games/basketball-game/index.html", "error": "false" }
+            { "name": "Angry Sharks", "icon": "./games/angry-sharks/assets/favicon/icon-512x512.png", "path": "./games/angry-sharks/index.html", "error": "false" },
+            { "name": "Basketball Random", "icon": "./games/basket-random/splash.jpeg", "path": "./games/basket-random/index.html", "error": "false" },
+            { "name": "Basketball Cannon", "icon": "./games/cannon-basketball-4/img/splash.png", "path": "./games/cannon-basketball-4/index.html", "error": "false" },
+            { "name": "Basketball Game", "icon": "./games/basketball-game/splash.png", "path": "./games/basketball-game/index.html", "error": "false" }
         ];
 
         const games = game.filter(game => !game.link).map(game => ({
@@ -107,42 +107,48 @@
         function loadLastPlayedGames() {
             const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
             lastPlayed.forEach(({ icon, path, name }) => {
-                createGameCard(lastPlayedContainer, icon, path, name, false);
+                const gameCard = createGameCard(icon, path, name);
+                lastPlayedContainer.appendChild(gameCard);
             });
         }
 
-        function createGameCard(container, icon, path, name, error) {
+        function createGameCard(icon, path, name) {
             const gameCard = document.createElement('div');
             gameCard.className = 'game-card';
+            gameCard.innerHTML = `
+                <img src="${icon}" alt="${name}" class="game-icon">
+                <div class="game-name">${name}</div>
+            `;
             gameCard.onclick = () => {
                 window.location.href = path;
+                localStorage.setItem('@proton/ls', JSON.stringify([{ icon, path, name }]));
             };
-            const gameIcon = document.createElement('img');
-            gameIcon.src = icon;
-            gameIcon.alt = name;
-            gameIcon.className = 'game-icon';
-            const gameName = document.createElement('div');
-            gameName.className = 'game-name';
-            gameName.textContent = name;
-            gameCard.appendChild(gameIcon);
-            gameCard.appendChild(gameName);
-            container.appendChild(gameCard);
+            return gameCard;
         }
 
-        games.forEach(({ icon, path, name, error }) => {
-            createGameCard(gameContainer, icon, path, name, error);
-        });
+        function createAllGameCards() {
+            games.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+                gameCard.innerHTML = `
+                    <img src="${game.icon}" alt="${game.name}" class="game-icon">
+                    <div class="game-name">${game.name}</div>
+                `;
+                gameCard.onclick = () => {
+                    const error = game.error;
+                    if (error === "false") {
+                        localStorage.setItem('@proton/ls', JSON.stringify([{ icon: game.icon, path: game.path, name: game.name }]));
+                        window.location.href = "./fullscreen.html";
+                    } else {
+                        console.error('Error loading game');
+                    }
+                };
+                gameContainer.appendChild(gameCard);
+            });
+        }
 
         loadLastPlayedGames();
-
-        window.addEventListener('beforeunload', () => {
-            const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
-            const currentGame = games.find(game => game.path === location.pathname.split('/').pop()) || null;
-            if (currentGame && !lastPlayed.find(game => game.path === currentGame.path)) {
-                lastPlayed.unshift(currentGame);
-                localStorage.setItem('@proton/ls', JSON.stringify(lastPlayed.slice(0, 10)));
-            }
-        });
+        createAllGameCards();
     </script>
 </body>
 </html>
