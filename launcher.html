@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proton Games</title>
+    <title>Proton</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -22,7 +22,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            justify-content: center;
+            justify-content: center; /* Center the game cards */
         }
         .game-card {
             background-color: #162447;
@@ -55,65 +55,64 @@
     <div class="game-container" id="gameContainer"></div>
 
     <script>
-        // Retrieve last played games from local storage
-        const lastPlayedGames = JSON.parse(localStorage.getItem('@proton/path')) || [];
-        
-        // Define all available games
-        const allGames = [
-            { "name": "Yohoho.io", "icon": "/assets/img/yohoho.jpeg", "path": "/games/Yohoho/index.html", "error": "false" },
-            { "name": "Monkey Mart", "icon": "/assets/img/monkey-mart.png", "path": "/games/Monkey-Mart/monkey-mart/index.html", "error": "false" },
-            { "name": "DriveMad", "icon": "/assets/img/DriveMad.jpeg", "path": "/games/DriveMad/index.html", "error": "false" },
-            { "name": "2048", "icon": "/assets/img/2048.png", "path": "/games/2048/index.html", "error": "false" },
-            // Add more games as needed
+        const games = [
+            { "icon": "https://example.com/icon1.png", "path": "./games/Yohoho/index.html", "error": false, "name": "Yohoho.io" },
+            { "icon": "https://example.com/icon2.png", "path": "https://example.com/game2", "error": false, "name": "Game 2" },
+            { "icon": "https://example.com/icon3.png", "path": "https://example.com/game3", "error": true, "name": "Game 3" }
         ];
 
-        // Function to handle game click event
-        function handleGameClick(game) {
-            // Check if the game has an error
-            if (game.error === "false") {
-                // Add the game to the Recently Played section
-                if (!lastPlayedGames.some(lastGame => lastGame.name === game.name)) {
-                    lastPlayedGames.push(game); // Add the game to the last played list
-                }
-                localStorage.setItem('@proton/path', JSON.stringify(lastPlayedGames)); // Store it in localStorage
-                
-                // Redirect to fullscreen.html
-                window.location.href = './fullscreen.html';
-            } else {
-                // If there is an error, show an alert
-                alert('This game is currently unavailable.');
-            }
-        }
+        const gameContainer = document.getElementById('gameContainer');
+        const lastPlayedContainer = document.getElementById('lastPlayedContainer');
 
-        // Function to display games in a specified container
-        function displayGames(games, containerId) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = ''; // Clear existing content
-            games.forEach(game => {
-                const card = document.createElement('div');
-                card.className = 'game-card';
-                card.onclick = () => handleGameClick(game);
-
-                const img = document.createElement('img');
-                img.src = game.icon;
-                img.alt = game.name;
-                img.className = 'game-icon';
-
-                const name = document.createElement('div');
-                name.className = 'game-name';
-                name.textContent = game.name;
-
-                card.appendChild(img);
-                card.appendChild(name);
-                container.appendChild(card);
+        function loadLastPlayedGames() {
+            const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
+            lastPlayed.forEach(({ icon, path, name }) => {
+                createGameCard(lastPlayedContainer, icon, path, name, false);
             });
         }
 
-        // Display the games in both sections
-        displayGames(allGames, 'gameContainer');
+        function createGameCard(container, icon, path, name, error) {
+            const gameCard = document.createElement('div');
+            gameCard.className = 'game-card';
+            gameCard.onclick = () => {
+                if (!error) {
+                    localStorage.setItem('@proton/path', path);
+                    saveLastPlayedGame({ icon, path, name });
+                    window.location.href = './fullscreen.html';
+                } else {
+                    alert('Error: This game is not available.');
+                }
+            };
 
-        // Display the last played games if any
-        displayGames(lastPlayedGames, 'lastPlayedContainer');
+            const gameIcon = document.createElement('img');
+            gameIcon.src = icon;
+            gameIcon.alt = name;
+            gameIcon.className = 'game-icon';
+
+            const gameName = document.createElement('div');
+            gameName.className = 'game-name';
+            gameName.innerText = name;
+
+            gameCard.append(gameIcon, gameName);
+            container.appendChild(gameCard);
+        }
+
+        function saveLastPlayedGame(game) {
+            const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
+            const existingIndex = lastPlayed.findIndex(item => item.path === game.path);
+            if (existingIndex !== -1) {
+                lastPlayed.splice(existingIndex, 1);
+            }
+            lastPlayed.unshift(game);
+            localStorage.setItem('@proton/ls', JSON.stringify(lastPlayed.slice(0, 5))); // Store only the last 5 played games
+        }
+
+        games.forEach(({ icon, path, error, name }) => {
+            createGameCard(gameContainer, icon, path, name, error);
+        });
+
+        loadLastPlayedGames();
+        
     </script>
 </body>
 </html>
