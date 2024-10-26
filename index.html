@@ -21,18 +21,17 @@
 
     .welcome-container {
       display: flex;
-      align-items: center; /* Align items vertically center */
-      font-size: 2em;
-      color: #f72585; /* Color for "Welcome to" */
-      margin-bottom: 10px; /* Space between welcome text and button */
+      align-items: center;
+      font-size: 3em;
+      color: #f72585;
+      margin-bottom: 10px;
     }
 
     .typing-container {
-      font-size: 3em;
       white-space: nowrap;
       border-right: 2px solid #f72585;
       animation: blink 0.7s steps(1) infinite;
-      padding-left: 5px; /* Space between "Welcome to" and typing effect */
+      padding-left: 5px;
     }
 
     @keyframes blink {
@@ -83,8 +82,7 @@
   <script>
     const texts = [
       { text: "Proton Games", highlight: true },
-       { text: "Your gaming paradise", highlight: true },
-      { text: "Your chance to relax", highlight: true }
+      { text: "The Next Gen of Gaming", highlight: true }
     ];
 
     const highlightText = (text, highlight) => {
@@ -138,7 +136,6 @@
       typingText.innerHTML = '';
       type();
     };
-    
   </script>
 </body>
 </html>
