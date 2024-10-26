@@ -1,6 +1,10 @@
+<title>Proton</title>
+<body>
+<h1>Please wait while we load your content</h1>
+</body>
 <script>
-  const path = localStorage.getItem("@proton/path");
 
+  const path = localStorage.getItem("@proton/path");
   if (path) {
       const gameFrame = document.createElement("iframe");
       gameFrame.setAttribute("src", path);
