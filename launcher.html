@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proton</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <style>
         body {
             background-color: #1b1b2f;
@@ -61,17 +64,15 @@
             { "icon": "games/Cookie-Clicker/IMG_1709.jpeg", "path": "/proton/games/Cookie-Clicker/index.html", "error": false, "name": "Cookie Clicker" },
             { "icon": "games/retro-bowl/retro.png", "path": "/proton/games/retro-bowl/index.html", "error": false, "name": "Retro Bowl" },
             { "icon": "games/2048/2048.png", "path": "/proton/games/2048/index.html", "error": false, "name": "2048" },
-           { "icon": "games/Bitlife/splash.png", "path": "/proton/games/Bitlife/index.html", "error": false, "name": "Bitlife" },
-           { "icon": "games/CSGO-Clicker/IMG_2626.png", "path": "/proton/games/CSGO-Clicker/index.html", "error": false, "name": "CSGO Clicker" },
-           { "icon": "games/Doge-Miner/IMG_2627.png", "path": "/proton/games/Doge-Miner/IMG_2627.png", "error": false, "name": "Doge Miner" },
-           { "icon": "games/BlockBlast/IMG_2625.jpeg", "path": "/proton/games/BlockBlast/index.html", "error": false, "name": "BlockBlast" },
-           { "icon": "games/DriveMad/DriveMad.jpg", "path": "/proton/games/DriveMad/index.html", "error": false, "name": "Drive Mad" },
-           { "icon": "games/Dunes/Dunes.jpeg", "path": "/proton/games/Dunes/index.html", "error": false, "name": "Dunes" },
-           { "icon": "games/EuroCup/splash.png", "path": "/proton/games/EuroCup/index.html", "error": false, "name": "Eurocup" },
-   
+            { "icon": "games/Bitlife/splash.png", "path": "/proton/games/Bitlife/index.html", "error": false, "name": "Bitlife" },
+            { "icon": "games/CSGO-Clicker/IMG_2626.png", "path": "/proton/games/CSGO-Clicker/index.html", "error": false, "name": "CSGO Clicker" },
+            { "icon": "games/Doge-Miner/IMG_2627.png", "path": "/proton/games/Doge-Miner/IMG_2627.png", "error": false, "name": "Doge Miner" },
+            { "icon": "games/BlockBlast/IMG_2625.jpeg", "path": "/proton/games/BlockBlast/index.html", "error": false, "name": "BlockBlast" },
+            { "icon": "games/DriveMad/DriveMad.jpg", "path": "/proton/games/DriveMad/index.html", "error": false, "name": "Drive Mad" },
+            { "icon": "games/Dunes/Dunes.jpeg", "path": "/proton/games/Dunes/index.html", "error": false, "name": "Dunes" },
+            { "icon": "games/EuroCup/splash.png", "path": "/proton/games/EuroCup/index.html", "error": false, "name": "Eurocup" },
         ];
 
-        
         const gameContainer = document.getElementById('gameContainer');
         const lastPlayedContainer = document.getElementById('lastPlayedContainer');
 
@@ -91,7 +92,7 @@
                     saveLastPlayedGame({ icon, path, name });
                     window.location.href = path;
                 } else {
-                    alert('Error: This game is unavailble.');
+                    alert('Error: This game is unavailable.');
                 }
             };
 
