@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proton</title>
+    <name>Proton</name>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -88,10 +88,10 @@
             { "name": "pixel gun survival", "icon": "./assets/img/IMG_2438.jpeg", "path": "/games/pixel-gun-survival/pixel-gun-survival", "error": "false" },
             { "name": "idle shark", "icon": "./assets/img/IMG_2449.jpeg", "path": "/games/idle-shark/idle-shark", "error": "false" },
             { "name": "Block Blast", "icon": "./assets/img/IMG_2459.jpeg", "path": "./games/BlockBlast/index.html", "error": "false" },
-            { "name": "Angry Sharks", "icon": "./games/angry-sharks/assets/favicon/icon-512x512.png", "path": "./games/angry-sharks/index.html", "error": "false" },
-            { "name": "Basketball Random", "icon": "./games/basket-random/splash.jpeg", "path": "./games/basket-random/index.html", "error": "false" },
-            { "name": "Basketball Cannon", "icon": "./games/cannon-basketball-4/img/splash.png", "path": "./games/cannon-basketball-4/index.html", "error": "false" },
-            { "name": "Basketball Game", "icon": "./games/basketball-game/splash.png", "path": "./games/basketball-game/index.html", "error": "false" }
+            { "name": "Block Blast", "icon": "./games/angry-sharks/assets/favicon/icon-512x512.png", "path": "./games/angry-sharks/index.html", "error": "false" },
+            { "name": "Basketball random", "icon": "./games/basket-random/splash.jpeg", "path": "./games/basket-random/index.html", "error": "false" },
+            { "name": "basketball cannon", "icon": "./games/cannon-basketball-4/img/splash.png", "path": "./games/cannon-basketball-4/index.html", "error": "false" },
+            { "name": "basketball game", "icon": "./games/basketball-game/splash.png", "path": "./games/basketball-game/index.html", "error": "false" }
         ];
 
         const games = game.filter(game => !game.link).map(game => ({
@@ -107,12 +107,11 @@
         function loadLastPlayedGames() {
             const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
             lastPlayed.forEach(({ icon, path, name }) => {
-                const gameCard = createGameCard(icon, path, name);
-                lastPlayedContainer.appendChild(gameCard);
+                createGameCard(lastPlayedContainer, icon, path, name, false);
             });
         }
 
-        function createGameCard(icon, path, name) {
+        function createGameCard(container, icon, path, name, error) {
             const gameCard = document.createElement('div');
             gameCard.className = 'game-card';
             gameCard.innerHTML = `
@@ -120,35 +119,21 @@
                 <div class="game-name">${name}</div>
             `;
             gameCard.onclick = () => {
-                window.location.href = path;
-                localStorage.setItem('@proton/ls', JSON.stringify([{ icon, path, name }]));
+                if (!error) {
+                    localStorage.setItem('@proton/ls', JSON.stringify([{ icon: game.icon, path: game.path, name: game.name }]));
+                    window.location.href = "./fullscreen.html";
+                } else {
+                    alert("The game is not available.");
+                }
             };
-            return gameCard;
+            container.appendChild(gameCard);
         }
 
-        function createAllGameCards() {
-            games.forEach(game => {
-                const gameCard = document.createElement('div');
-                gameCard.className = 'game-card';
-                gameCard.innerHTML = `
-                    <img src="${game.icon}" alt="${game.name}" class="game-icon">
-                    <div class="game-name">${game.name}</div>
-                `;
-                gameCard.onclick = () => {
-                    const error = game.error;
-                    if (error === "false") {
-                        localStorage.setItem('@proton/ls', JSON.stringify([{ icon: game.icon, path: game.path, name: game.name }]));
-                        window.location.href = "./fullscreen.html";
-                    } else {
-                        console.error('Error loading game');
-                    }
-                };
-                gameContainer.appendChild(gameCard);
-            });
-        }
+        games.forEach(game => {
+            createGameCard(gameContainer, game.icon, game.path, game.name, game.error === "true");
+        });
 
         loadLastPlayedGames();
-        createAllGameCards();
     </script>
 </body>
 </html>
