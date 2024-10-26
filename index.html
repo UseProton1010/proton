@@ -19,12 +19,20 @@
       overflow: hidden;
     }
 
+    .welcome-container {
+      display: flex;
+      align-items: center; /* Align items vertically center */
+      font-size: 2em;
+      color: #f72585; /* Color for "Welcome to" */
+      margin-bottom: 10px; /* Space between welcome text and button */
+    }
+
     .typing-container {
       font-size: 3em;
       white-space: nowrap;
       border-right: 2px solid #f72585;
       animation: blink 0.7s steps(1) infinite;
-      padding-right: 5px;
+      padding-left: 5px; /* Space between "Welcome to" and typing effect */
     }
 
     @keyframes blink {
@@ -64,15 +72,19 @@
   </style>
 </head>
 <body>
-  <div class="typing-container">
-    <span id="typing-text"></span>
+  <div class="welcome-container">
+    <div>Welcome to</div>
+    <div class="typing-container">
+      <span id="typing-text"></span>
+    </div>
   </div>
   <button class="explore-button" onclick="exploreCosmics()">Explore the Cosmics</button>
 
   <script>
     const texts = [
       { text: "Proton Games", highlight: true },
-      { text: "The Next Gen of Gaming", highlight: true }
+       { text: "Your gaming paradise", highlight: true },
+      { text: "Your chance to relax", highlight: true }
     ];
 
     const highlightText = (text, highlight) => {
