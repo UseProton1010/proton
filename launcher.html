@@ -76,7 +76,7 @@
             gameCard.className = 'game-card';
             gameCard.onclick = () => {
                 if (!error) {
-                    localStorage.setItem('@proton/path', path);
+                    localStorage.setItem('@proton/path', game.path);
                     saveLastPlayedGame({ icon, path, name });
                     window.location.href = './fullscreen.html';
                 } else {
