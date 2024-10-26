@@ -1,0 +1,16 @@
+<widgetbot
+  server="1093320994829115542"
+  channel="1223361889069830155"
+  width="100vw"
+  height="100vh"
+  id="embed"
+></widgetbot>
+<script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
+
+<script>
+  const embed = document.getElementById("embed");
+  embed.emit();
+  embed.on("message", ({ message, channel }) => {
+    alert(`New message in #${channel.name}`, message);
+  });
+</script>

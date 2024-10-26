@@ -1,0 +1,28 @@
+<title>Proton | SoundBoard</title>
+
+<div class="img-with-text">
+  <img src="./Audiobutton.png" onclick="OOF()" class="Button" />
+  <p>OOF Sound</p>
+</div>
+<audio id="OOF" src="./Roblox-death-sound.mp3"></audio>
+
+<style>
+  .Button {
+    float: left;
+    width: 400px;
+    height: 400px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .img-with-text {
+    text-align: justify;
+    width: 400px;
+  }
+</style>
+<script>
+  function OOF() {
+    var audio = document.getElementById("OOF");
+    audio.play();
+  }
+</script>

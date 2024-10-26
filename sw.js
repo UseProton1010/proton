@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'proton-v0.0.1';
+const CACHE_NAME = 'proton-v0.1';
 let urlsToCache = [
   'index.html',
   'launcher.html',

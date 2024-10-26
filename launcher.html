@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proton</title>
+    <name>Proton</name>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -55,284 +55,230 @@
     <div class="game-container" id="gameContainer"></div>
 
     <script>
-        const games = [
+        const game = [
   {
-    "title": "Yohoho.io",
-    "logo": "/assets/img/yohoho.jpeg",
-    "src": "/games/Yohoho/index.html",
-    "alert": ""
+    "name": "Yohoho.io",
+    "icon": "/assets/img/yohoho.jpeg",
+    "path": "/games/Yohoho/index.html",
+    "error": ""
   },
   {
-    "title": "Monkey Mart",
-    "logo": "/assets/img/monkey-mart.png",
-    "src": "/games/Monkey-Mart/monkey-mart/index.html",
-    "alert": ""
+    "name": "Monkey Mart",
+    "icon": "/assets/img/monkey-mart.png",
+    "path": "/games/Monkey-Mart/monkey-mart/index.html",
+    "error": ""
   },
   {
-    "title": "DriveMad",
-    "logo": "/assets/img/DriveMad.jpeg",
-    "src": "/games/DriveMad/index.html",
-    "alert": ""
+    "name": "DriveMad",
+    "icon": "/assets/img/DriveMad.jpeg",
+    "path": "/games/DriveMad/index.html",
+    "error": ""
   },
   {
-    "title": "2048",
-    "logo": "/assets/img/2048.png",
-    "src": "/games/2048/index.html",
-    "alert": ""
+    "name": "2048",
+    "icon": "/assets/img/2048.png",
+    "path": "/games/2048/index.html",
+    "error": ""
   },
   {
-    "title": "Awesome Tanks",
-    "logo": "/assets/img/awesome-tanks.jpeg",
-    "src": "/games/awesome-tanks/index.html",
-    "alert": ""
+    "name": "Awesome Tanks",
+    "icon": "/assets/img/awesome-tanks.jpeg",
+    "path": "/games/awesome-tanks/index.html",
+    "error": ""
   },
   {
-    "title": "Awesome Tanks 2",
-    "logo": "/assets/img/awesome-tanks2.jpeg",
-    "src": "/games/awesome-tanks2/index.html",
-    "alert": ""
+    "name": "Awesome Tanks 2",
+    "icon": "/assets/img/awesome-tanks2.jpeg",
+    "path": "/games/awesome-tanks2/index.html",
+    "error": ""
   },
   {
-    "title": "Bitlife",
-    "logo": "/assets/img/bitlife.png",
-    "src": "/games/Bitlife/index.html",
-    "alert": ""
+    "name": "Bitlife",
+    "icon": "/assets/img/bitlife.png",
+    "path": "/games/Bitlife/index.html",
+    "error": ""
   },
   {
-    "title": "Subway Surfers",
-    "logo": "/assets/img/splash.jpeg",
-    "src": "/games/Subway-Surfers/index.html",
-    "alert": ""
+    "name": "Subway Surfers",
+    "icon": "/assets/img/splash.jpeg",
+    "path": "/games/Subway-Surfers/index.html",
+    "error": ""
   },
   {
-    "title": "Subway Surfers New York",
-    "logo": "/assets/img/SSNY.jpeg",
-    "src": "/games/subway-surfers-ny/index.html",
-    "alert": ""
+    "name": "Subway Surfers New York",
+    "icon": "/assets/img/SSNY.jpeg",
+    "path": "/games/subway-surfers-ny/index.html",
+    "error": ""
   },
   {
-    "title": "tanuki sunset",
-    "logo": "/assets/img/TS.png",
-    "src": "/games/tanuki-sunset/index.html",
-    "alert": ""
+    "name": "tanuki sunset",
+    "icon": "/assets/img/TS.png",
+    "path": "/games/tanuki-sunset/index.html",
+    "error": ""
   },
   {
-    "title": "Core Ball",
-    "logo": "/assets/img/CB.jpeg",
-    "src": "/games/core-ball/index.html",
-    "alert": ""
+    "name": "Core Ball",
+    "icon": "/assets/img/CB.jpeg",
+    "path": "/games/core-ball/index.html",
+    "error": ""
   },
   {
-    "title": "Doge Miner",
-    "logo": "/assets/img/DM.png",
-    "src": "/games/Doge-Miner/index.html",
-    "alert": ""
+    "name": "Doge Miner",
+    "icon": "/assets/img/DM.png",
+    "path": "/games/Doge-Miner/index.html",
+    "error": ""
   },
   {
-    "title": "Tiny Fishing",
-    "logo": "/assets/img/TF.png",
-    "src": "/games/tiny-fishing/index.html",
-    "alert": ""
+    "name": "Tiny Fishing",
+    "icon": "/assets/img/TF.png",
+    "path": "/games/tiny-fishing/index.html",
+    "error": ""
   },
   {
-    "title": "Dift Boss",
-    "logo": "/assets/img/drift-boss.png",
-    "src": "/games/drift-boss/index.html",
-    "alert": ""
+    "name": "Dift Boss",
+    "icon": "/assets/img/drift-boss.png",
+    "path": "/games/drift-boss/index.html",
+    "error": ""
   },
   {
-    "title": "Cookie Clicker",
-    "logo": "/assets/img/CC.JPG",
-    "src": "/games/Cookie-Clicker/index.html",
-    "alert": ""
+    "name": "Cookie Clicker",
+    "icon": "/assets/img/CC.JPG",
+    "path": "/games/Cookie-Clicker/index.html",
+    "error": ""
   },
   {
-    "title": "Idle Breakout",
-    "logo": "/assets/img/IB.JPG",
-    "src": "/games/Idle-Breakout/index.html",
-    "alert": ""
+    "name": "Idle Breakout",
+    "icon": "/assets/img/IB.JPG",
+    "path": "/games/Idle-Breakout/index.html",
+    "error": ""
   },
   {
-    "title": "CSGO Clicker",
-    "logo": "/assets/img/CSGO.png",
-    "src": "/games/CSGO-Clicker/index.html",
-    "alert": ""
+    "name": "CSGO Clicker",
+    "icon": "/assets/img/CSGO.png",
+    "path": "/games/CSGO-Clicker/index.html",
+    "error": ""
   },
   {
-    "title": "Swoop",
-    "logo": "/assets/img/Swoop.jpeg",
-    "src": "/games/Swoop/index.html",
-    "alert": ""
+    "name": "Swoop",
+    "icon": "/assets/img/Swoop.jpeg",
+    "path": "/games/Swoop/index.html",
+    "error": ""
   },
   {
-    "title": "Color Switch",
-    "logo": "/assets/img/CS.jpeg",
-    "src": "/games/Color-Switch/index.html",
-    "alert": ""
+    "name": "Color Switch",
+    "icon": "/assets/img/CS.jpeg",
+    "path": "/games/Color-Switch/index.html",
+    "error": ""
   },
   {
-    "title": "Dunes",
-    "logo": "/assets/img/Dunes.jpeg",
-    "src": "/games/Dunes/index.html",
-    "alert": ""
+    "name": "Dunes",
+    "icon": "/assets/img/Dunes.jpeg",
+    "path": "/games/Dunes/index.html",
+    "error": ""
   },
   {
-    "title": "OvO",
-    "logo": "/assets/img/OvO.PNG",
+    "name": "OvO",
+    "icon": "/assets/img/OvO.PNG",
     "link": "https://www.coolmathgames.com/0-ovo/play",
-    "alert": ""
+    "error": ""
   },
   {
-    "title": "Edge Surf",
-    "logo": "/assets/img/ES.JPG",
-    "src": "/games/edge-surf/index.html",
-    "alert": ""
+    "name": "Edge Surf",
+    "icon": "/assets/img/ES.JPG",
+    "path": "/games/edge-surf/index.html",
+    "error": ""
   },
   {
-    "title": "Champion Island",
-    "logo": "/assets/img/CI.PNG",
-    "src": "/games/champion-island/index.html",
-    "alert": ""
+    "name": "Champion Island",
+    "icon": "/assets/img/CI.PNG",
+    "path": "/games/champion-island/index.html",
+    "error": ""
   },
   {
-    "title": "Stickman Hook",
-    "logo": "/assets/img/SH.jpeg",
-    "src": "/games/stickman-hook/index.html",
-    "alert": ""
+    "name": "Stickman Hook",
+    "icon": "/assets/img/SH.jpeg",
+    "path": "/games/stickman-hook/index.html",
+    "error": ""
   },
   {
-    "title": "Draw the Hill",
-    "logo": "/assets/img/DTH.jpeg",
-    "src": "/games/draw-the-hill/index.html",
-    "alert": ""
+    "name": "Draw the Hill",
+    "icon": "/assets/img/DTH.jpeg",
+    "path": "/games/draw-the-hill/index.html",
+    "error": ""
   },
   {
-    "title": "Wordle",
-    "logo": "/assets/img/Wordle.png",
-    "src": "/games/wordle/index.html",
-    "alert": ""
+    "name": "Wordle",
+    "icon": "/assets/img/Wordle.png",
+    "path": "/games/wordle/index.html",
+    "error": ""
   },
   {
-    "title": "Ballistic Chicken",
-    "logo": "/assets/img/BC.jpeg",
-    "src": "/games/ballistic-chickens/index.html",
-    "alert": ""
+    "name": "Ballistic Chicken",
+    "icon": "/assets/img/BC.jpeg",
+    "path": "/games/ballistic-chickens/index.html",
+    "error": ""
   },
   {
-    "title": "Motox3m",
-    "logo": "/assets/img/motox3m.jpeg",
-    "link": "https://www.coolmathgames.com/0-moto-x3m/play",
-    "alert": ""
+    "name": "Paper Io 2",
+    "icon": "/assets/img/pi2.jpeg",
+    "path": "./games/paperio2",
+    "error": ""
   },
   {
-    "title": "Penalty Kick Online",
-    "logo": "/assets/img/pk.JPG",
-    "link": "https://www.coolmathgames.com/0-penalty-kick-online/play",
-    "alert": ""
+    "name": "geometry dash",
+    "icon": "./assets/img/IMG_2436.jpeg",
+    "path": "/games/geodash/geodash/index.html",
+    "error": ""
   },
   {
-    "title": "Slice Master",
-    "logo": "/assets/img/sm.JPG",
-    "link": "https://www.coolmathgames.com/0-slice-master/play",
-    "alert": ""
+    "name": "pixel gun survival",
+    "icon": "./assets/img/IMG_2438.jpeg",
+    "path": "/games/pixel-gun-survival/pixel-gun-survival",
+    "error": ""
   },
   {
-    "title": "suika watermelon game",
-    "logo": "/assets/img/sw.JPG",
-    "link": "https://www.coolmathgames.com/0-suika-watermelon-game/play",
-    "alert": ""
+    "name": "idle shark",
+    "icon": "./assets/img/IMG_2449.jpeg",
+    "path": "/games/idle-shark/idle-shark",
+    "error": ""
   },
   {
-    "title": "Table Tenis",
-    "logo": "/assets/img/tt.jpeg",
-    "link": "https://gamesnacks.com/games/tabletennis",
-    "alert": ""
+    "name": "Block Blast",
+    "icon": "./assets/img/IMG_2459.jpeg",
+    "path": "./games/BlockBlast/index.html",
+    "error": ""
   },
   {
-    "title": "Google Doodle Forth of July",
-    "logo": "/assets/img/gd.png",
-    "link": "https://www.google.com/logos/2019/july4th19/r6/july4th19.html?hl=en",
-    "alert": ""
+    "name": "Block Blast",
+    "icon": "./games/angry-sharks/assets/favicon/icon-512x512.png",
+    "path": "./games/angry-sharks/index.html",
+    "error": ""
   },
   {
-    "title": "Google Doodle Halloween",
-    "logo": "/assets/img/gdc.gif",
-    "link": "https://www.google.com/logos/2016/halloween16/halloween16.html?hl=en",
-    "alert": ""
+    "name": "Basketball random",
+    "icon": "./games/basket-random/splash.jpeg",
+    "path": "./games/basket-random/index.html",
+    "error": ""
   },
   {
-    "title": "Idle Startup Tycoon",
-    "logo": "/assets/img/ist.png",
-    "link": "https://www.mortgagecalculator.org/money-games/idle-startup-tycoon/",
-    "alert": ""
+    "name": "basketball cannon",
+    "icon": "./games/cannon-basketball-4/img/splash.png",
+    "path": "./games/cannon-basketball-4/index.html",
+    "error": ""
   },
   {
-    "title": "Paper Io 2",
-    "logo": "/assets/img/pi2.jpeg",
-    "src": "./games/paperio2",
-    "alert": ""
-  },
-  {
-    "title": "geometry dash",
-    "logo": "./assets/img/IMG_2436.jpeg",
-    "src": "/games/geodash/geodash/index.html",
-    "alert": ""
-  },
-  {
-    "title": "pixel gun survival",
-    "logo": "./assets/img/IMG_2438.jpeg",
-    "src": "/games/pixel-gun-survival/pixel-gun-survival",
-    "alert": ""
-  },
-  {
-    "title": "idle shark",
-    "logo": "./assets/img/IMG_2449.jpeg",
-    "src": "/games/idle-shark/idle-shark",
-    "alert": ""
-  },
-  {
-    "title": "CoolMathgames",
-    "logo": "./assets/img/IMG_2450.png",
-    "link": "https://www.coolmathgames.com/",
-    "alert": "This website is broken"
-  },
-  {
-    "title": "Block Blast",
-    "logo": "./assets/img/IMG_2459.jpeg",
-    "src": "./games/BlockBlast/index.html",
-    "alert": ""
-  },
-  {
-    "title": "Block Blast",
-    "logo": "./games/angry-sharks/assets/favicon/icon-512x512.png",
-    "src": "./games/angry-sharks/index.html",
-    "alert": ""
-  },
-  {
-    "title": "Basketball random",
-    "logo": "./games/basket-random/splash.jpeg",
-    "src": "./games/basket-random/index.html",
-    "alert": ""
-  },
-  {
-    "title": "basketball cannon",
-    "logo": "./games/cannon-basketball-4/img/splash.png",
-    "src": "./games/cannon-basketball-4/index.html",
-    "alert": ""
-  },
-  {
-    "title": "basketball game",
-    "logo": "./games/basketball-game/splash.png",
-    "src": "./games/basketball-game/index.html",
-    "alert": ""
+    "name": "basketball game",
+    "icon": "./games/basketball-game/splash.png",
+    "path": "./games/basketball-game/index.html",
+    "error": ""
   }
 ];
 
-const games = jsonData.filter(game => !game.link).map(game => ({
-  title: game.title,
-  logo: game.logo,
-  src: game.src,
-  alert: game.alert
+const games = game.filter(game => !game.link).map(game => ({
+  name: game.name,
+  icon: game.icon,
+  path: game.path,
+  error: game.error
 }));
 
 console.log(games);
@@ -357,12 +303,12 @@ console.log(games);
                     saveLastPlayedGame({ icon, path, name });
                     window.location.href = './fullscreen.html';
                 } else {
-                    alert('Error: This game is not available.');
+                    error('Error: This game is not available.');
                 }
             };
 
             const gameIcon = document.createElement('img');
-            gameIcon.src = icon;
+            gameIcon.path = icon;
             gameIcon.alt = name;
             gameIcon.className = 'game-icon';
 
