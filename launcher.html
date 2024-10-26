@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <name>Proton</name>
+    <title>Proton</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -114,25 +114,35 @@
         function createGameCard(container, icon, path, name, error) {
             const gameCard = document.createElement('div');
             gameCard.className = 'game-card';
-            gameCard.innerHTML = `
-                <img src="${icon}" alt="${name}" class="game-icon">
-                <div class="game-name">${name}</div>
-            `;
             gameCard.onclick = () => {
-                if (!error) {
-                    window.open(path);
-                } else {
-                    alert("The game is not available.");
-                }
+                window.location.href = path;
             };
+            const gameIcon = document.createElement('img');
+            gameIcon.src = icon;
+            gameIcon.alt = name;
+            gameIcon.className = 'game-icon';
+            const gameName = document.createElement('div');
+            gameName.className = 'game-name';
+            gameName.textContent = name;
+            gameCard.appendChild(gameIcon);
+            gameCard.appendChild(gameName);
             container.appendChild(gameCard);
         }
 
-        games.forEach(game => {
-            createGameCard(gameContainer, game.icon, game.path, game.name, game.error === "true");
+        games.forEach(({ icon, path, name, error }) => {
+            createGameCard(gameContainer, icon, path, name, error);
         });
 
         loadLastPlayedGames();
+
+        window.addEventListener('beforeunload', () => {
+            const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
+            const currentGame = games.find(game => game.path === location.pathname.split('/').pop()) || null;
+            if (currentGame && !lastPlayed.find(game => game.path === currentGame.path)) {
+                lastPlayed.unshift(currentGame);
+                localStorage.setItem('@proton/ls', JSON.stringify(lastPlayed.slice(0, 10)));
+            }
+        });
     </script>
 </body>
 </html>
