@@ -1,11 +1,10 @@
-<!D<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proton</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap?v=1" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap?v=1" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
@@ -42,14 +41,14 @@
             transform: scale(1.05);
         }
         .game-icon {
-            width: 100%; 
-            border-radius: 8px;
+            width: 100%;
+            height: 120px;
             object-fit: cover;
+            border-radius: 8px;
         }
         .game-name {
             margin-top: 10px;
             font-size: 1.2em;
-            font-family: 'Roboto', sans-serif;
         }
     </style>
 </head>
@@ -61,8 +60,6 @@
     <div class="game-container" id="gameContainer"></div>
 
     <script>
-        const version = '1'; 
-
         const games = [
             { "icon": "games/Yohoho/IMG_4103.jpeg", "path": "/proton/games/Yohoho/index.html", "error": false, "name": "Yohoho.io" },
             { "icon": "games/Cookie-Clicker/IMG_1709.jpeg", "path": "/proton/games/Cookie-Clicker/index.html", "error": false, "name": "Cookie Clicker" },
@@ -72,7 +69,7 @@
             { "icon": "games/CSGO-Clicker/IMG_2626.png", "path": "/proton/games/CSGO-Clicker/index.html", "error": false, "name": "CSGO Clicker" },
             { "icon": "games/Doge-Miner/IMG_2627.png", "path": "/proton/games/Doge-Miner/index.html", "error": false, "name": "Doge Miner" },
             { "icon": "games/BlockBlast/IMG_2625.jpeg", "path": "/proton/games/BlockBlast/index.html", "error": false, "name": "BlockBlast" },
-            { "icon": "games/DriveMad/DriveMad.jpg", "path": "/proton/games/DriveMad/index.html", "error": false, "name": "Drive Mad" },
+            { "icon": "games/DriveMad/DriveMad.jpg", "path": "/proton/games/DriveMad/index.html", "error": false, "name": "Drive Mad" },  
             { "icon": "games/EuroCup/splash.png", "path": "/proton/games/EuroCup/index.html", "error": false, "name": "Eurocup" },
             { "icon": "games/Geo-Dash-Subzero/IMG_0858.png", "path": "/proton/games/Geo-Dash-Subzero/index.html", "error": false, "name": "Geodash subzero" },
             { "icon": "games/Idle-Breakout/IMG_3996.png", "path": "/proton/games/Idle-Breakout/index.html", "error": false, "name": "Idle Breakout" },
@@ -87,7 +84,7 @@
         function loadLastPlayedGames() {
             const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
             lastPlayed.forEach(({ icon, path, name }) => {
-                createGameCard(lastPlayedContainer, `${icon}?v=${version}`, path, name, false);
+                createGameCard(lastPlayedContainer, icon, path, name, false);
             });
         }
 
@@ -105,7 +102,7 @@
             };
 
             const gameIcon = document.createElement('img');
-            gameIcon.src = `${icon}?v=${version}`;
+            gameIcon.src = icon;
             gameIcon.alt = name;
             gameIcon.className = 'game-icon';
 
@@ -128,7 +125,7 @@
         }
 
         games.forEach(({ icon, path, error, name }) => {
-            createGameCard(gameContainer, `${icon}?v=${version}`, path, name, error);
+            createGameCard(gameContainer, icon, path, name, error);
         });
 
         loadLastPlayedGames();
