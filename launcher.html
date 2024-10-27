@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proton</title>
+    <title>Proton - Game List</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
@@ -20,6 +20,7 @@
             text-align: center;
             font-size: 2.5em;
             margin-bottom: 20px;
+            color: #ffffff;
         }
         .game-container {
             display: flex;
@@ -29,26 +30,28 @@
         }
         .game-card {
             background-color: #162447;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 10px;
             text-align: center;
             width: 150px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
         }
         .game-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.9);
         }
         .game-icon {
             width: 100%;
-            height: 120px;
+            height: auto;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 10px;
         }
         .game-name {
             margin-top: 10px;
             font-size: 1.2em;
+            color: #e0e0e0;
         }
     </style>
 </head>
@@ -61,21 +64,21 @@
 
     <script>
         const games = [
-            { "icon": "games/Yohoho/IMG_4103.jpeg", "path": "/proton/games/Yohoho/index.html", "error": false, "name": "Yohoho.io" },
-            { "icon": "games/Cookie-Clicker/IMG_1709.jpeg", "path": "/proton/games/Cookie-Clicker/index.html", "error": false, "name": "Cookie Clicker" },
-            { "icon": "games/retro-bowl/retro.png", "path": "/proton/games/retro-bowl/index.html", "error": false, "name": "Retro Bowl" },
-            { "icon": "games/2048/2048.png", "path": "/proton/games/2048/index.html", "error": false, "name": "2048" },
-            { "icon": "games/Bitlife/splash.png", "path": "/proton/games/Bitlife/index.html", "error": false, "name": "Bitlife" },
-            { "icon": "games/CSGO-Clicker/IMG_2626.png", "path": "/proton/games/CSGO-Clicker/index.html", "error": false, "name": "CSGO Clicker" },
-            { "icon": "games/Doge-Miner/IMG_2627.png", "path": "/proton/games/Doge-Miner/index.html", "error": false, "name": "Doge Miner" },
-            { "icon": "games/BlockBlast/IMG_2625.jpeg", "path": "/proton/games/BlockBlast/index.html", "error": false, "name": "BlockBlast" },
-            { "icon": "games/DriveMad/DriveMad.jpg", "path": "/proton/games/DriveMad/index.html", "error": false, "name": "Drive Mad" },  
-            { "icon": "games/EuroCup/splash.png", "path": "/proton/games/EuroCup/index.html", "error": false, "name": "Eurocup" },
-            { "icon": "games/Geo-Dash-Subzero/IMG_0858.png", "path": "/proton/games/Geo-Dash-Subzero/index.html", "error": false, "name": "Geodash subzero" },
-            { "icon": "games/Idle-Breakout/IMG_3996.png", "path": "/proton/games/Idle-Breakout/index.html", "error": false, "name": "Idle Breakout" },
-            { "icon": "games/Monkey-Mart/IMG_2630.jpeg", "path": "/proton/games/Monkey-Mart/index.html", "error": false, "name": "Monkey Mart" },
-            { "icon": "games/Subway-Surfers/IMG_2631.jpeg", "path": "/proton/games/Subway-Surfers/index.html", "error": false, "name": "Subway Surfers" },
-            { "icon": "games/Swoop/Swoop.jpeg", "path": "/proton/games/Swoop/index.html", "error": false, "name": "Swoop" },
+            { "icon": "games/Yohoho/IMG_4103.jpeg?v=1", "path": "/proton/games/Yohoho/index.html?v=1", "error": false, "name": "Yohoho.io" },
+            { "icon": "games/Cookie-Clicker/IMG_1709.jpeg?v=1", "path": "/proton/games/Cookie-Clicker/index.html?v=1", "error": false, "name": "Cookie Clicker" },
+            { "icon": "games/retro-bowl/retro.png?v=1", "path": "/proton/games/retro-bowl/index.html?v=1", "error": false, "name": "Retro Bowl" },
+            { "icon": "games/2048/2048.png?v=1", "path": "/proton/games/2048/index.html?v=1", "error": false, "name": "2048" },
+            { "icon": "games/Bitlife/splash.png?v=1", "path": "/proton/games/Bitlife/index.html?v=1", "error": false, "name": "Bitlife" },
+            { "icon": "games/CSGO-Clicker/IMG_2626.png?v=1", "path": "/proton/games/CSGO-Clicker/index.html?v=1", "error": false, "name": "CSGO Clicker" },
+            { "icon": "games/Doge-Miner/IMG_2627.png?v=1", "path": "/proton/games/Doge-Miner/index.html?v=1", "error": false, "name": "Doge Miner" },
+            { "icon": "games/BlockBlast/IMG_2625.jpeg?v=1", "path": "/proton/games/BlockBlast/index.html?v=1", "error": false, "name": "BlockBlast" },
+            { "icon": "games/DriveMad/DriveMad.jpg?v=1", "path": "/proton/games/DriveMad/index.html?v=1", "error": false, "name": "Drive Mad" },  
+            { "icon": "games/EuroCup/splash.png?v=1", "path": "/proton/games/EuroCup/index.html?v=1", "error": false, "name": "Eurocup" },
+            { "icon": "games/Geo-Dash-Subzero/IMG_0858.png?v=1", "path": "/proton/games/Geo-Dash-Subzero/index.html?v=1", "error": false, "name": "Geodash subzero" },
+            { "icon": "games/Idle-Breakout/IMG_3996.png?v=1", "path": "/proton/games/Idle-Breakout/index.html?v=1", "error": false, "name": "Idle Breakout" },
+            { "icon": "games/Monkey-Mart/IMG_2630.jpeg?v=1", "path": "/proton/games/Monkey-Mart/index.html?v=1", "error": false, "name": "Monkey Mart" },
+            { "icon": "games/Subway-Surfers/IMG_2631.jpeg?v=1", "path": "/proton/games/Subway-Surfers/index.html?v=1", "error": false, "name": "Subway Surfers" },
+            { "icon": "games/Swoop/Swoop.jpeg?v=1", "path": "/proton/games/Swoop/index.html?v=1", "error": false, "name": "Swoop" },
         ];
 
         const gameContainer = document.getElementById('gameContainer');
