@@ -143,7 +143,7 @@
 
       const updateTitle = () => {
         try {
-          document.title = frame.contentDocument.title;
+          document.title = frame.contentDocument.title || "Proton";
         } catch (e) {
           console.error("Unable to get iframe title", e)
         }
