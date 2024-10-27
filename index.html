@@ -9,13 +9,11 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <style>
-    
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
     body {
       display: flex;
       flex-direction: column;
@@ -28,8 +26,6 @@
       overflow: hidden;
       text-align: center;
     }
-
-    /* Welcome Text */
     .welcome-container {
       display: flex;
       align-items: baseline;
@@ -38,14 +34,11 @@
       margin-bottom: 20px;
       letter-spacing: 1px;
     }
-
     .welcome-container div:first-child {
       font-weight: 400;
       margin-right: 8px;
       color: #9e9e9e;
     }
-
-    
     .typing-container {
       white-space: nowrap;
       border-right: 3px solid #f72585;
@@ -54,20 +47,16 @@
       font-weight: 600;
       color: #f72585;
     }
-
     @keyframes blink {
       0%, 50% { border-color: transparent; }
       50%, 100% { border-color: #f72585; }
     }
-
     .highlight {
       background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: 600;
     }
-
-    
     .explore-button {
       margin-top: 30px;
       padding: 12px 28px;
@@ -80,12 +69,10 @@
       cursor: pointer;
       transition: background 0.4s, transform 0.2s ease-in-out;
     }
-
     .explore-button:hover {
       background: linear-gradient(90deg, #6a0572, #4c4c66);
       transform: translateY(-2px);
     }
-
     .explore-button:focus {
       outline: none;
       box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
@@ -150,10 +137,26 @@
       frame.setAttribute("src", "launcher.html");
       frame.style.height = "100vh";
       frame.style.width = "100vw";
-      document.title = frame.contentDocument.document.title;
       frame.style.border = "none";
       document.body.innerHTML = '';
       document.body.appendChild(frame);
+
+      const updateTitle = () => {
+        try {
+          document.title = frame.contentDocument.title;
+        } catch (e) {
+          console.error("Unable to get iframe title", e)
+        }
+      };
+
+      const titleInterval = setInterval(() => {
+        updateTitle();
+      }, 1000);
+
+      frame.onload = function() {
+        updateTitle();
+        clearInterval(titleInterval);
+      };
     }
 
     window.onload = () => {
