@@ -54,17 +54,19 @@
             font-size: 1.2em;
             color: #e0e0e0;
         }
-        .search-container {
-            text-align: center;
-            margin: 20px 0;
-        }
+        /* Style for the search input */
         .search-input {
+            width: 100%;
             padding: 10px;
-            font-size: 1em;
-            width: 80%;
-            max-width: 300px;
+            border: 2px solid #e0e0e0;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            background-color: #162447;
+            color: #ffffff;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+        .search-input::placeholder {
+            color: #aaaaaa;
         }
     </style>
 </head>
@@ -73,14 +75,8 @@
     <div class="game-container" id="lastPlayedContainer"></div>
 
     <h1>All Games</h1>
-    <div class="search-container">
-        <input 
-            type="text" 
-            id="searchInput" 
-            class="search-input" 
-            placeholder="Search for a game..." 
-        />
-    </div>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search for games...">
+
     <div class="game-container" id="gameContainer"></div>
 
     <script>
@@ -150,25 +146,22 @@
                 lastPlayed.splice(existingIndex, 1);
             }
             lastPlayed.unshift(game);
-            if (lastPlayed.length > 10) {
-                lastPlayed.pop(); 
-            }
-            localStorage.setItem('@proton/ls', JSON.stringify(lastPlayed));
-        }
-
-        function filterGames() {
-            const query = searchInput.value.toLowerCase();
-            const gameCards = document.querySelectorAll('.game-card');
-
-            gameCards.forEach(card => {
-                const gameName = card.querySelector('.game-name').innerText.toLowerCase();
-                card.style.display = gameName.includes(query) ? 'block' : 'none';
-            });
+            localStorage.setItem('@proton/ls', JSON.stringify(lastPlayed.slice(0, 5)));
         }
 
         function loadAllGames() {
-            games.forEach(game => {
-                createGameCard(gameContainer, game.icon, game.path, game.name, game.error);
+            games.forEach(({ icon, path, name, error }) => {
+                createGameCard(gameContainer, icon, path, name, error);
+            });
+        }
+
+        function filterGames() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const allGameCards = document.querySelectorAll('.game-card');
+
+            allGameCards.forEach(card => {
+                const gameName = card.querySelector('.game-name').innerText.toLowerCase();
+                card.style.display = gameName.includes(searchTerm) ? '' : 'none';
             });
         }
 
