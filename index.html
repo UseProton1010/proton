@@ -151,6 +151,7 @@
       frame.setAttribute("src", "launcher.html");
       frame.style.height = "100vh";
       frame.style.width = "100vw";
+      document.title = iframe.contentDocument.document.title;
       frame.style.border = "none";
       document.body.innerHTML = '';
       document.body.appendChild(frame);
