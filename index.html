@@ -4,42 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proton</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <style>
+    /* Layout and Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
-      background-color: #1b1b2f;
+      background-color: #121212;
       font-family: 'Poppins', sans-serif;
       color: #ffffff;
       overflow: hidden;
+      text-align: center;
     }
 
+    /* Welcome Text */
     .welcome-container {
       display: flex;
-      align-items: center;
-      font-size: 3em;
-      color: #f72585;
-      margin-left: 20px;
-      margin-bottom: 16px;
+      align-items: baseline;
+      font-size: 2.5em;
+      color: #f8f8f8;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
     }
 
     .welcome-container div:first-child {
-      margin-right: 20px;
+      font-weight: 400;
+      margin-right: 8px;
+      color: #9e9e9e;
     }
 
+    /* Typing Effect */
     .typing-container {
       white-space: nowrap;
-      border-right: 2px solid #f72585;
-      animation: blink 0.7s steps(1) infinite;
-      padding-left: 5px;
+      border-right: 3px solid #f72585;
+      animation: blink 0.75s steps(1) infinite;
+      padding-left: 4px;
+      font-weight: 600;
+      color: #f72585;
     }
 
     @keyframes blink {
@@ -47,34 +60,36 @@
       50%, 100% { border-color: #f72585; }
     }
 
+    /* Highlight Gradient Text */
     .highlight {
-      font-weight: bold;
       background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      color: transparent;
+      font-weight: 600;
     }
 
+    /* Explore Button */
     .explore-button {
-      margin-top: 20px;
-      padding: 15px 30px;
-      font-size: 1.5em;
+      margin-top: 30px;
+      padding: 12px 28px;
+      font-size: 1.2em;
+      font-weight: 600;
       color: #ffffff;
-      background-color: #4c4c66;
+      background: linear-gradient(90deg, #4c4c66, #6a0572);
       border: none;
-      border-radius: 5px;
+      border-radius: 50px;
       cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      outline: none;
+      transition: background 0.4s, transform 0.2s ease-in-out;
     }
 
     .explore-button:hover {
-      background-color: #6a0572;
-      transform: scale(1.05);
+      background: linear-gradient(90deg, #6a0572, #4c4c66);
+      transform: translateY(-2px);
     }
 
     .explore-button:focus {
-      box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+      outline: none;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
     }
   </style>
 </head>
@@ -85,21 +100,19 @@
       <span id="typing-text"></span>
     </div>
   </div>
-  <button class="explore-button" onclick="exploreCosmics()">Explore the Cosmics</button>
+  <button class="explore-button" onclick="exploreCosmics()">Explore the Cosmos</button>
 
   <script>
     const texts = [
       { text: "Proton Games", highlight: true },
       { text: "The Next Gen of Gaming", highlight: true },
-      { text: "The homework free place", highlight: true },
+      { text: "The homework-free place", highlight: true },
       { text: "Your gaming paradise", highlight: true },
       { text: "Your place to relax", highlight: true }
     ];
 
     const highlightText = (text, highlight) => {
-      return highlight 
-        ? `<span class="highlight">${text}</span>` 
-        : text;
+      return highlight ? `<span class="highlight">${text}</span>` : text;
     };
 
     let textIndex = 0;
@@ -124,12 +137,12 @@
         charIndex++;
         if (charIndex > currentText.length) {
           isDeleting = true;
-          setTimeout(type, 1000);
+          setTimeout(type, 800);
           return;
         }
       }
 
-      const typingSpeed = isDeleting ? 75 : 150;
+      const typingSpeed = isDeleting ? 50 : 120;
       setTimeout(type, typingSpeed);
     }
 
