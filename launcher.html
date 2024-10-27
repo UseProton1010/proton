@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!D<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -62,6 +62,8 @@
     <div class="game-container" id="gameContainer"></div>
 
     <script>
+        const version = '1'; 
+
         const games = [
             { "icon": "games/Yohoho/IMG_4103.jpeg", "path": "/proton/games/Yohoho/index.html", "error": false, "name": "Yohoho.io" },
             { "icon": "games/Cookie-Clicker/IMG_1709.jpeg", "path": "/proton/games/Cookie-Clicker/index.html", "error": false, "name": "Cookie Clicker" },
@@ -86,7 +88,7 @@
         function loadLastPlayedGames() {
             const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
             lastPlayed.forEach(({ icon, path, name }) => {
-                createGameCard(lastPlayedContainer, icon, path, name, false);
+                createGameCard(lastPlayedContainer, `${icon}?v=${version}`, path, name, false);
             });
         }
 
@@ -104,7 +106,7 @@
             };
 
             const gameIcon = document.createElement('img');
-            gameIcon.src = icon;
+            gameIcon.src = `${icon}?v=${version}`;
             gameIcon.alt = name;
             gameIcon.className = 'game-icon';
 
@@ -127,7 +129,7 @@
         }
 
         games.forEach(({ icon, path, error, name }) => {
-            createGameCard(gameContainer, icon, path, name, error);
+            createGameCard(gameContainer, `${icon}?v=${version}`, path, name, error);
         });
 
         loadLastPlayedGames();
