@@ -9,7 +9,7 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <style>
-    /* Layout and Global Styles */
+    
     * {
       box-sizing: border-box;
       margin: 0;
@@ -45,7 +45,7 @@
       color: #9e9e9e;
     }
 
-    /* Typing Effect */
+    
     .typing-container {
       white-space: nowrap;
       border-right: 3px solid #f72585;
@@ -60,7 +60,6 @@
       50%, 100% { border-color: #f72585; }
     }
 
-    /* Highlight Gradient Text */
     .highlight {
       background: linear-gradient(90deg, #ff4ec7, #c084fc, #0073ff);
       -webkit-background-clip: text;
@@ -68,7 +67,7 @@
       font-weight: 600;
     }
 
-    /* Explore Button */
+    
     .explore-button {
       margin-top: 30px;
       padding: 12px 28px;
@@ -151,7 +150,7 @@
       frame.setAttribute("src", "launcher.html");
       frame.style.height = "100vh";
       frame.style.width = "100vw";
-      document.title = iframe.contentDocument.document.title;
+      document.title = frame.contentDocument.document.title;
       frame.style.border = "none";
       document.body.innerHTML = '';
       document.body.appendChild(frame);
