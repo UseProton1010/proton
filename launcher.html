@@ -54,6 +54,18 @@
             font-size: 1.2em;
             color: #e0e0e0;
         }
+        .search-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .search-input {
+            padding: 10px;
+            font-size: 1em;
+            width: 80%;
+            max-width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
 <body>
@@ -61,6 +73,14 @@
     <div class="game-container" id="lastPlayedContainer"></div>
 
     <h1>All Games</h1>
+    <div class="search-container">
+        <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Search for a game..." 
+        />
+    </div>
     <div class="game-container" id="gameContainer"></div>
 
     <script>
@@ -88,6 +108,7 @@
 
         const gameContainer = document.getElementById('gameContainer');
         const lastPlayedContainer = document.getElementById('lastPlayedContainer');
+        const searchInput = document.getElementById('searchInput');
 
         function loadLastPlayedGames() {
             const lastPlayed = JSON.parse(localStorage.getItem('@proton/ls')) || [];
@@ -129,14 +150,32 @@
                 lastPlayed.splice(existingIndex, 1);
             }
             lastPlayed.unshift(game);
-            localStorage.setItem('@proton/ls', JSON.stringify(lastPlayed.slice(0, 5)));
+            if (lastPlayed.length > 10) {
+                lastPlayed.pop(); 
+            }
+            localStorage.setItem('@proton/ls', JSON.stringify(lastPlayed));
         }
 
-        games.forEach(({ icon, path, error, name }) => {
-            createGameCard(gameContainer, icon, path, name, error);
-        });
+        function filterGames() {
+            const query = searchInput.value.toLowerCase();
+            const gameCards = document.querySelectorAll('.game-card');
+
+            gameCards.forEach(card => {
+                const gameName = card.querySelector('.game-name').innerText.toLowerCase();
+                card.style.display = gameName.includes(query) ? 'block' : 'none';
+            });
+        }
+
+        function loadAllGames() {
+            games.forEach(game => {
+                createGameCard(gameContainer, game.icon, game.path, game.name, game.error);
+            });
+        }
+
+        searchInput.addEventListener('input', filterGames);
 
         loadLastPlayedGames();
+        loadAllGames();
     </script>
 </body>
 </html>
